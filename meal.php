@@ -4,6 +4,7 @@
     //Security::onlyLoggedInUsers();
 
     $meal = Meal::getById($_GET['id']);
+    $host = Meal::getUserById($meal['user_id']);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -17,11 +18,12 @@
 <body>
     <?php //include_once(__DIR__ . "/partials/nav.inc.php"); ?>
     <?php $culture = Culture::getById($meal['culture_id']) ?>
-    <h3><?php echo $meal['name'] ?></h3>
+    <img src="<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
+    <h2><?php echo $meal['name'] ?></h2>
     <p><?php echo $culture['name'] ?></p>
-    <p><?php echo $meal['description'] ?></p>
+    <p><?php echo $host['firstname'] ?></p>
     <p><?php echo $meal['location'] ?></p>
     <p><?php echo $meal['meetingTime'] ?></p>
-    <img src="<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
+    <p><?php echo $meal['description'] ?></p>
 </body>
 </html>
