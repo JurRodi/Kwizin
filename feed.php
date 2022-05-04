@@ -18,9 +18,12 @@
 <body>
     <?php include_once(__DIR__ . "/partials/header.inc.php"); ?>
 
-    <form class="content search-form">
-        <input type="text" name="search" placeholder="Search for a meal" class="search">
-    </form>
+    <div class="content">
+        <a class="filter" href="filter.php">Filteren</a>
+        <form class="search-form">
+            <input type="text" name="search" class="search" >
+        </form>
+    </div>
     <div class="content suggestions">
         <h2>Aanbevolen voor jou</h2>
         <div class="slide-bar">
@@ -29,7 +32,7 @@
                 <div class="meal">
                     <img src="<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
                     <h3><?php echo $meal['name'] ?></h3>
-                    <img src="<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
+                    <img class="avatar" src="<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
                     <div class="guests">
                         <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
                         <div class="iconPeople"></div>
@@ -48,7 +51,7 @@
                     <div class="meal">
                         <img src="<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
                         <h3><?php echo $meal['name'] ?></h3>
-                        <img src="<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
+                        <img class="avatar" src="<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
                         <div class="guests">
                             <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
                             <div class="iconPeople"></div>
@@ -59,7 +62,7 @@
             </div>
         </div>
     <?php endforeach; ?>
-
+    <div class="whiteSpace"></div>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
 </body>
 </html>
