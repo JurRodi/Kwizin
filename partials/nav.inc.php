@@ -1,7 +1,7 @@
 <nav>
-    <a href="connect.php">
+    <a href="reconnect.php">
         <div class="nav-item">
-            <img id="connect" src="icons/reconnect.png" alt="reconnect-button">
+            <img id="reconnect" src="icons/reconnect.png" alt="reconnect-button">
             <p class="nav-title">reconnect</p>
         </div>
     </a>
