@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+body{
+    margin: 20px 0 0 0;
+    padding: 0;
+    font-family: Myriad Pro, sans-serif;
+}
+
 a{
     text-decoration: none;
 }
@@ -47,13 +53,14 @@ nav{
 .meal{
     width: 250px;
     height: 250px;
-    margin-right: 20px;
+    margin-right: 50px;
     box-shadow: 8px 8px black;
     border-radius: 10px;
 }
 
 .content{
     margin-left: 7%;
+    margin-bottom: 50px;
 }
 
 h2{
@@ -65,12 +72,15 @@ h2{
 }
 
 .search{
-    width: 86%;
-    height: 30px;
-}
-
-.content{
-    margin-bottom: 50px;
+    width: 93%;
+    height: 40px;
+    background-color: #E4E4E4;
+    border: none;
+    border-radius: 10px;
+    background-image: url("../icons/Icon-search.png");
+    background-repeat: no-repeat;
+    background-position: 1% 50%;
+    font-size: 20px; 
 }
 
 #home{
@@ -78,7 +88,7 @@ h2{
     height: 33px;
 }
 
-#connect{
+#reconnect{
     width: 38px;
     height: 27px;
 }
@@ -92,11 +102,57 @@ h2{
     width: 60px;
     height: 60px;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    justify-content: center;
     flex-direction: column;
 }
 
 .nav-title{
     margin: 0 0 0 0;
     color: black;
+}
+
+.filter{
+    color: #A91B0D;
+    text-decoration: underline;
+    position: absolute;
+    right: 7%;
+    top: 100px;
+}
+
+.whiteSpace{
+    height: 100px;
+}
+
+.avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.centered{
+    display: flex;
+    justify-content: center;
+    width: 93%;
+}
+
+.button{
+    width: 265px;
+    height: 50px;
+    background-color: #A91B0D;
+    color: #FDFFF5;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+
+.chat{
+    border-top: #E4E4E4 dashed 4px;
+    width: 100%;
+    padding: 30px 0 30px 8%;
+    display: flex;
+}
+
+.chat-user{
+    color: #A91B0D;
 }
