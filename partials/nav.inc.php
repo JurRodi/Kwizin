@@ -7,13 +7,13 @@
     </a>
     <a href="feed.php">
         <div class="nav-item active">
-            <img id="home" src="icons/home.png" alt="reconnect-button">
+            <img id="home" src="icons/home.png" alt="home-button">
             <p class="nav-title">home</p>
         </div>
     </a>
     <a href="profile.php">
         <div class="nav-item">
-            <img id="profile" src="icons/profile.png" alt="reconnect-button">
+            <img id="profile" src="icons/profile.png" alt="profile-button">
             <p class="nav-title">profile</p>
         </div>
     </a>
