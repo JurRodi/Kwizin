@@ -151,18 +151,18 @@
 
         public static function getAllPrevConnected($id){
                 $conn = Db::getConnection();
-                $stmt = $conn->prepare("SELECT * FROM users WHERE id = :id");//"SELECT * FROM users WHERE id IN (SELECT user_id FROM connections WHERE user_id = :id)"
+                $stmt = $conn->prepare("SELECT * FROM users WHERE id IN (SELECT reconnect_id FROM connections WHERE user_id = :id)");//"SELECT * FROM users WHERE id IN (SELECT user_id FROM connections WHERE user_id = :id)"
                 $stmt->bindValue(":id", $id);
                 $stmt->execute();
                 return $stmt->fetchAll();
         }
 
         public static function getById($id){
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM users WHERE id = :id");
-            $stmt->bindValue(":id", $id);
-            $stmt->execute();
-            return $stmt->fetch();
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM users WHERE id = :id");
+                $stmt->bindValue(":id", $id);
+                $stmt->execute();
+                return $stmt->fetch();
         }
     }
 ?>
