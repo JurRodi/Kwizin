@@ -101,15 +101,17 @@ h2{
 .nav-item{
     width: 60px;
     height: 60px;
+    margin-top: 4px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
 }
 
 .nav-title{
     margin: 0 0 0 0;
     color: black;
+    font-size: 18px;
 }
 
 .filter{
@@ -197,4 +199,23 @@ h2{
     position: absolute;
     top: 275px;
     right: 10%;
+}
+
+#edit-profile{
+    background-color: #E4E4E4;
+    color: #040301;
+}
+
+.active img{
+    filter: invert(16%) sepia(42%) saturate(5466%) hue-rotate(353deg) brightness(93%) contrast(100%);
+    /* filter: #A91B0D; */
+}
+
+.active p{
+    color: #A91B0D;
+}
+
+.chat-reconnect{
+    width: 30px;
+    height: 30px;
 }
