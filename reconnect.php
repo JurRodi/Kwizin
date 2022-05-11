@@ -3,7 +3,7 @@
     include_once(__DIR__."/bootstrap.php");
 
     $id = 1;
-    $users = User::getAllPrevConnected($id);
+    $connectedUsers = User::getAllPrevConnected($id);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="styling/style.css">
 </head>
 <body>
+    <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
+
     <div class="content">
         <form class="search-form">
             <input type="text" name="search" class="search" >
@@ -22,16 +24,16 @@
         <div class="centered"><a class="button" href="">Eetverzoeken</a></div>
     </div>
     <div class="">
-        <?php foreach($users as $user): ?>
+        <?php foreach($connectedUsers as $connectedUser): ?>
             <div class="chat">
-                <img class="avatar" src="<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>">
-                <h3 class="chat-user"><?php echo $user['firstname']." ".$user['lastname'] ?></h3>
-                <p class="chat-message"><?php //echo $user['message'] ?>dit wordt een bericht</p>
-                <div class="chat-reconnect"></div>
+                <img class="avatar" src="<?php echo $connectedUser['avatar'] ?>" alt="<?php echo $connectedUser['firstname'] ?>">
+                <div>
+                    <h3 class="chat-user"><?php echo $connectedUser['firstname']." ".$connectedUser['lastname'] ?></h3>
+                    <p class="chat-message"><?php //echo $user['message'] ?>dit wordt een bericht</p>
+                </div>
+                <a href=""><img class="chat-reconnect" src="icons/Icon-reconnect.png" alt="reconnect-icon"></a>
             </div>
         <?php endforeach; ?>
     </div>
-
-    <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
 </body>
 </html>
