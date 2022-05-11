@@ -17,6 +17,7 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/header.inc.php"); ?>
+    <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
 
     <div class="content">
         <a class="filter" href="filter.php">Filteren</a>
@@ -63,6 +64,5 @@
         </div>
     <?php endforeach; ?>
     <div class="whiteSpace"></div>
-    <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
 </body>
 </html>

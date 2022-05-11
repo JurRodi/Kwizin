@@ -46,6 +46,5 @@
         </ul>
         <div class="centered bottom" id="signUp-button"><a class="button" href="">Inschrijven</a></div>
     </div>
-    
 </body>
 </html>
