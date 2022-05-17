@@ -123,7 +123,7 @@
             return $stmt->fetchAll();
         }
 
-        public static function getMealByUser($user_id){
+        public static function getMealsByUser($user_id){
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM meals WHERE user_id = :user_id");
             $stmt->bindValue(":user_id", $user_id);
@@ -159,5 +159,19 @@
             $stmt = $conn->prepare("SELECT COUNT(id) FROM meal_users WHERE meal_id = :meal_id");
             $stmt->bindValue(":meal_id", $meal_id);
             return $stmt->execute();
+        }
+
+        public static function addMeal($user_id, $culture_id, $name, $description, $price, $location, $meetingTime){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("INSERT INTO meals (user_id, culture_id, name, description, price, location, meetingTime) VALUES (:user_id, :culture_id, :name, :description, :price, :location, :meetingTime)");
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->bindValue(":culture_id", $culture_id);
+                $stmt->bindValue(":name", $name);
+                $stmt->bindValue(":description", $description);
+                $stmt->bindValue(":price", $price);
+                $stmt->bindValue(":location", $location);
+                $stmt->bindValue(":meetingTime", $meetingTime);
+                $stmt->execute();
+                return $conn->lastInsertId();
         }
     }
