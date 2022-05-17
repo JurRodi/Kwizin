@@ -31,12 +31,14 @@
         <?php foreach($suggestedMeals as $meal): $host = Meal::getUserById($meal['user_id']); ?>
             <a href="meal.php?id=<?php echo $meal['id'] ?>">
                 <div class="meal">
-                    <img src="<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
-                    <h3><?php echo $meal['name'] ?></h3>
-                    <img class="avatar" src="<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
-                    <div class="guests">
-                        <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
-                        <div class="iconPeople"></div>
+                    <img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
+                    <div class="feed-details">
+                        <img class="avatar avatar-feed" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
+                        <h3 class="meal-title"><?php echo $meal['name'] ?></h3>
+                        <div class="guests">
+                            <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
+                            <div class="iconPeople"></div>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -50,12 +52,14 @@
             <?php foreach(Meal::getMealsByCulture($culture['id']) as $meal): $host = Meal::getUserById($meal['user_id']); ?>
                 <a href="meal.php?id=<?php echo $meal['id'] ?>">
                     <div class="meal">
-                        <img src="<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
-                        <h3><?php echo $meal['name'] ?></h3>
-                        <img class="avatar" src="<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
-                        <div class="guests">
-                            <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
-                            <div class="iconPeople"></div>
+                        <img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
+                        <div class="feed-details">
+                            <img class="avatar avatar-feed" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
+                            <h3 class="meal-title"><?php echo $meal['name'] ?></h3>
+                            <div class="guests">
+                                <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
+                                <div class="iconPeople"></div>
+                            </div>
                         </div>
                     </div>
                 </a>
