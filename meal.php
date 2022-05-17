@@ -23,12 +23,12 @@
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
     <?php $culture = Culture::getById($meal['culture_id']) ?>
     <div class="meal-details">
-        <div class="floating-icons">
+        <div class="floating-icons floating-icons-meal">
             <a href="feed.php"><img class="icon" src="icons/Icon-arrow.png" alt="arrow-button"></a>
             <a href=""><img class="icon" src="icons/Icon-share.png" alt="share-button"></a>
         </div>
-        <div class="detail-image"><img src="<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
-        <div class="avatar meal-avatar"><img src="<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>"></div>
+        <div><img class="detail-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
+        <div class="meal-avatar"><img class="avatar big" src="images/<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>"></div>
         <div class="content">
             <h2><?php echo $meal['name'] ?></h2>
             <p><?php echo $culture['name'] ?></p>
