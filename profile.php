@@ -21,12 +21,20 @@
     <div class="profile content-line ">
         <div class="centered"><img class="avatar big" src="images/<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>"></div>
         <h2 class="centered"><?php echo $user['firstname'] ?></h2>
-        <div class="ratings centered">
-            <div><img src="icons" alt="chef-icon"></div>
-            <div><img src="icons" alt="ster-icon"></div>
+        <div class="ratings">
+            <div class="rating">
+                <?php for($i = 5; $i > 0; $i--): ?>
+                    <div><img class="profile-icon" src="icons/Icon-chef.svg" alt="chef-icon"></div>
+                <?php endfor; ?>
+            </div>
+            <div class="rating">
+                <?php for($i = 5; $i > 0; $i--): ?>
+                    <div><img class="profile-icon" src="icons/Icon-star.svg" alt="ster-icon"></div>
+                <?php endfor; ?>
+            </div>
         </div>
         <div class="centered"><a class="button" id="edit-profile" href="">Profiel bewerken</a></div>
-        <p><?php echo $user['bio'] ?></p>
+        <p class="bio"><?php echo $user['bio'] ?></p>
     </div>
     <div class="content-line extraProfile">
         <div class="favoriteMeals">
@@ -53,10 +61,10 @@
         <div class="profile-meals">
             <?php foreach($meals as $meal): ?>
                 <div class="profile-meal">
-                    <div class="meal-image"><img src="<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
+                    <img class="meal-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
                     <div class="meal-content">
-                        <h4 class="red"><?php echo $meal['name'] ?></h4>
-                        <p><?php echo $meal['rating'] ?></p>
+                        <h4 class="profile-meal-title red"><?php echo $meal['name'] ?></h4>
+                        <p><?php echo Meal::calculateRating($meal['id']) ?></p>
                     </div>
                 </div>
             <?php endforeach; ?>
