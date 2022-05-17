@@ -155,10 +155,11 @@
         }
 
         public static function countGuests($meal_id){
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT COUNT(id) FROM meal_users WHERE meal_id = :meal_id");
-            $stmt->bindValue(":meal_id", $meal_id);
-            return $stmt->execute();
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT COUNT(id) FROM meal_users WHERE meal_id = :meal_id");
+                $stmt->bindValue(":meal_id", $meal_id);
+                $stmt->execute();
+                return $stmt->fetch()[0];
         }
 
         public static function addMeal($user_id, $culture_id, $name, $description, $price, $location, $meetingTime){
@@ -173,5 +174,13 @@
                 $stmt->bindValue(":meetingTime", $meetingTime);
                 $stmt->execute();
                 return $conn->lastInsertId();
+        }
+
+        public static function calculateRating($meal_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT AVG(rating) FROM reviews WHERE meal_id = :meal_id");
+                $stmt->bindValue(":meal_id", $meal_id);
+                $stmt->execute();
+                return round($stmt->fetch()[0]);
         }
     }
