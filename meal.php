@@ -7,6 +7,10 @@
     $host = Meal::getUserById($meal['user_id']);
     $ingredients = [];
 
+    $datetime = new DateTime($meal['meetingTime']);
+    $date = $datetime->format('d-m-Y');
+    $time = $datetime->format('H:i');
+
     $id = 1;
     $user = User::getById($id);
 
@@ -44,7 +48,20 @@
                 <li><?php echo $ingredient['name'] ?></li>
             <?php endforeach; ?>
         </ul>
-        <div class="centered bottom" id="signUp-button"><a class="button" href="">Inschrijven</a></div>
+        <div class="centered bottom" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
     </div>
+    <div class="pop-up">
+        <h2 class="centered">Je bent ingeschreven bij <?php echo $host['firstname'] ?></h2>
+        <p class="centered"><?php echo "Op " . $date . " om " . $time . " in " . $meal['location']?></p>
+        <ul class="centered">
+            <p>Samen met:</p>
+            <?php foreach($ingredients as $ingredient): ?>
+                <li><?php echo $ingredient['name'] ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="centered bottom"><a class="button" id="confirm-signUp-meal" href="#">Doorgaan</a></div>
+        <div class="centered bottom annulation"><a id="annulation" href="#">Annuleren</a></div>
+    </div>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
