@@ -47,7 +47,7 @@
     </div>
     <?php foreach($cultures as $culture): ?>
         <div class="content culture">
-            <h2><?php echo $culture['name'] ?></h2>
+            <h2><?php echo $culture['name'] . " keuken" ?></h2>
             <div class="slide-bar">
             <?php foreach(Meal::getMealsByCulture($culture['id']) as $meal): $host = Meal::getUserById($meal['user_id']); ?>
                 <a href="meal.php?id=<?php echo $meal['id'] ?>">
@@ -68,5 +68,6 @@
         </div>
     <?php endforeach; ?>
     <div class="whiteSpace"></div>
+    <script src="scripts/script.js"></script>
 </body>
 </html>

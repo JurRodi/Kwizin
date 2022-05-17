@@ -36,7 +36,7 @@
         <select name="culture" id="culture" class="form-input">
             <option value="">Kies een cultuur</option>
             <?php foreach($cultures as $culture): ?>
-                <option value="<?php echo $culture['id'] ?>"><?php echo $culture['name'] ?></option>
+                <option value="<?php echo $culture['id'] ?>"><?php echo $culture['name'] . " cultuur" ?></option>
             <?php endforeach; ?>
         </select>
         <label for="description" class="red"><h3>Beschrijving</h3></label>
@@ -49,7 +49,7 @@
         <input type="file" name="image" id="image" required>
         <label for="location" class="red"><h3>Locatie</h3></label>
         <input type="text" name="location" id="location" class="form-input" required>
-        <label for="meetingTime" class="red"><h3>Tijdstip</h3></label>
+        <label for="meetingTime" class="red"><h3>Datum en tijdstip</h3></label>
         <input type="datetime-local" name="meetingTime" id="meetingTime" class="form-input" required>
         <div class="centered form-button-align"><input type="submit" name="mealUpload" value="Voeg gerecht toe" class="button form-button"></div>
     </form>
