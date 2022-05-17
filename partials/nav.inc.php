@@ -12,7 +12,7 @@
         </div>
     </a>
     <a href="profile.php">
-        <div class="nav-item <?php if(basename($_SERVER['PHP_SELF']) === "profile.php"){echo "active";} ?>">
+        <div class="nav-item <?php if(basename($_SERVER['PHP_SELF']) === "profile.php" || basename($_SERVER['PHP_SELF']) === "uploadMeal.php"){echo "active";} ?>">
             <img id="profile" class="<?php echo "active" ?>" src="icons/profile.svg" alt="profile-button">
             <p class="nav-title">profiel</p>
         </div>
