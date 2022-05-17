@@ -25,14 +25,14 @@
     </div>
     <div class="">
         <?php foreach($connectedUsers as $connectedUser): ?>
-            <div class="chat">
-                <img class="avatar" src="<?php echo $connectedUser['avatar'] ?>" alt="<?php echo $connectedUser['firstname'] ?>">
-                <div>
-                    <h3 class="chat-user"><?php echo $connectedUser['firstname']." ".$connectedUser['lastname'] ?></h3>
+            <a href="chat.php?u=<?php echo $connectedUser['firstname'] ?>" class="chat">
+                <img class="avatar chat-avatar" src="images/<?php echo $connectedUser['avatar'] ?>" alt="<?php echo $connectedUser['firstname'] ?>">
+                <div class="chat-details">
+                    <h3 class="red"><?php echo $connectedUser['firstname']." ".$connectedUser['lastname'] ?></h3>
                     <p class="chat-message"><?php //echo $user['message'] ?>dit wordt een bericht</p>
                 </div>
-                <a href=""><img class="chat-reconnect" src="icons/Icon-reconnect.png" alt="reconnect-icon"></a>
-            </div>
+                <a href="" class="chat-icon"><img class="chat-reconnect" src="icons/Icon-reconnect.png" alt="reconnect-icon"></a>
+            </a>
         <?php endforeach; ?>
     </div>
 </body>
