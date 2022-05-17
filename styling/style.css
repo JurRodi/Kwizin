@@ -10,6 +10,7 @@ body{
 
 a{
     text-decoration: none;
+    color: #040301;
 }
 
 header{
@@ -30,18 +31,10 @@ nav{
     bottom: 0px;
 }
 
-.iconPeople{
-    width: 38px;
-    height: 27px;
-    background-image: url("../icons/people.png");
-}
-
-.guests{
-    width: 100px;
+.avatar{
+    width: 50px;
     height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-radius: 100%;
 }
 
 .slide-bar{
@@ -54,8 +47,56 @@ nav{
     width: 250px;
     height: 250px;
     margin-right: 50px;
-    box-shadow: 8px 8px black;
-    border-radius: 10px;
+    box-shadow: 8px 8px 8px #CCCCCC ;
+    border-radius: 25px;
+}
+
+.feed-image{
+    width: 100%;
+    height: 60%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 25px;
+}
+
+.feed-details{
+    width: 100%;
+    height: 40%;
+    padding-top: 10px;
+}
+
+.avatar-feed{
+    position: absolute;
+    margin-left: 10px;
+    z-index: -1;
+}
+
+.meal-title{
+    margin: 0 0 0 70px;
+    font-weight: normal;
+}
+
+.iconPeople{
+    width: 34px;
+    height: 24px;
+    background-image: url("../icons/reconnect.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: invert(16%) sepia(42%) saturate(5466%) hue-rotate(353deg) brightness(93%) contrast(100%);
+    z-index: -1;
+}
+
+.guests{
+    display: flex;
+    align-items: center;
+    margin-left: 180px;
+}
+
+.amoutOfGuests{
+    color: #A91B0D;
+    font-size: 20px;
+    margin-right: 5px;
 }
 
 .content{
@@ -63,11 +104,14 @@ nav{
     margin-bottom: 50px;
 }
 
-h2{
-    color: #A91B0D;
+.content-line{
+    padding-left: 7%;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: dashed 4px #E4E4E4;
 }
 
-.amoutOfGuests{
+h2{
     color: #A91B0D;
 }
 
@@ -126,10 +170,9 @@ h2{
     height: 100px;
 }
 
-.avatar{
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
+.big{
+    width: 100px;
+    height: 100px;
 }
 
 .centered{
@@ -149,14 +192,52 @@ h2{
     padding-top: 16px;
 }
 
+.form-button{
+    padding-top: 0;
+    border: none;
+    font-size: 16px;
+}
+
+.form-button-align{
+    width: 100%;
+}
+
+.form-input{
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.form-text{
+    height: 160px;
+}
+
 .chat{
     border-top: #E4E4E4 dashed 4px;
     width: 100%;
-    padding: 30px 0 30px 8%;
+    padding: 30px 8% 30px 8%;
     display: flex;
+    align-items: center;
 }
 
-.chat-user{
+.chat-avatar{
+    margin-right: 40px;
+}
+
+.chat-reconnect{
+    width: 30px;
+    height: 30px;
+}
+
+.chat-icon{
+    position: absolute;
+    right: 10%;
+    margin-top: -90px;
+}
+
+.red{
     color: #A91B0D;
 }
 
@@ -164,7 +245,6 @@ h2{
     width: 100%;
     height: 300px;
     margin-top: -20px;
-    background-color: #E4E4E4;
 }
 
 .meal-details{
@@ -184,8 +264,11 @@ h2{
 .floating-icons{
     position: absolute;
     top: 30px;
-    width: 94%;
-    margin-left: 3%;
+    margin-left: 4%;
+}
+
+.floating-icons-meal{
+    width: 92%;
     display: flex;
     justify-content: space-between;
 }
@@ -208,14 +291,43 @@ h2{
 
 .active img{
     filter: invert(16%) sepia(42%) saturate(5466%) hue-rotate(353deg) brightness(93%) contrast(100%);
-    /* filter: #A91B0D; */
 }
 
 .active p{
     color: #A91B0D;
 }
 
-.chat-reconnect{
-    width: 30px;
-    height: 30px;
+.meal-form{
+    width: 86%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.profile{
+    width: 100%;
+    border-bottom: solid 1px #040301;
+}
+
+.profile-heading{
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ratings{
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.profile-meals{
+    display: flex;
+    flex: wrap;
+}
+
+.profile-meal{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin-right: 30px;
 }
