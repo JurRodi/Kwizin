@@ -18,18 +18,32 @@
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
 
+    <div class="floating-icons right">
+        <a href="profile.php"><img class="icon" src="icons/Icon-menu.svg" alt="arrow-button"></a>
+    </div>
+
     <div class="profile content-line ">
         <div class="centered"><img class="avatar big" src="images/<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>"></div>
         <h2 class="centered"><?php echo $user['firstname'] ?></h2>
+        <?php $rating = User::calculatecookingRating($user['id']) ?>
         <div class="ratings">
             <div class="rating">
                 <?php for($i = 5; $i > 0; $i--): ?>
-                    <div><img class="profile-icon" src="icons/Icon-chef.svg" alt="chef-icon"></div>
+                    <?php if($rating > 0): ?>
+                        <div><img class="profile-icon" src="icons/Icon-chef.svg" alt="chef-icon"></div>
+                    <?php else: ?>
+                        <div><img class="profile-icon" src="icons/Icon-chef-grey.svg" alt="chef-icon"></div>
+                    <?php endif; $rating--?>
                 <?php endfor; ?>
             </div>
+            <?php $rating = User::calculateUserRating($user['id']) ?>
             <div class="rating">
                 <?php for($i = 5; $i > 0; $i--): ?>
-                    <div><img class="profile-icon" src="icons/Icon-star.svg" alt="ster-icon"></div>
+                    <?php if($rating > 0): ?>
+                        <div><img class="profile-icon" src="icons/Icon-star.svg" alt="star-icon"></div>
+                    <?php else: ?>
+                        <div><img class="profile-icon" src="icons/Icon-star-grey.svg" alt="star-icon"></div>
+                    <?php endif; $rating--?>
                 <?php endfor; ?>
             </div>
         </div>
@@ -64,7 +78,16 @@
                     <img class="meal-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
                     <div class="meal-content">
                         <h4 class="profile-meal-title red"><?php echo $meal['name'] ?></h4>
-                        <p><?php echo Meal::calculateRating($meal['id']) ?></p>
+                        <?php $rating = Meal::calculateMealRating($meal['id']) ?>
+                        <div class="rating">
+                            <?php for($i = 5; $i > 0; $i--): ?>   
+                                <?php if($rating > 0): ?>
+                                    <div><img class="profile-icon" src="icons/Icon-star.svg" alt="star-icon"></div>
+                                <?php else: ?>
+                                    <div><img class="profile-icon" src="icons/Icon-star-grey.svg" alt="star-icon"></div>
+                                <?php endif; $rating--?>
+                            <?php endfor; ?>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>
