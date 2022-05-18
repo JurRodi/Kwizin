@@ -184,6 +184,16 @@ h2{
     height: 100px;
 }
 
+.medium{
+    width: 75px;
+    height: 75px;
+}
+
+.small{
+    width: 40px;
+    height: 40px;
+}
+
 .centered{
     display: flex;
     justify-content: center;
@@ -287,6 +297,10 @@ h2{
     height: 30px;
 }
 
+.right{
+    right: 4%;
+}
+
 .meal-avatar{
     position: absolute;
     top: 275px;
@@ -317,6 +331,7 @@ h2{
 .profile{
     width: 100%;
     border-bottom: solid 1px #040301;
+    margin-top: 50px;
 }
 
 .profile-heading{
@@ -347,7 +362,7 @@ h2{
 }
 
 .profile-meal-title{
-    margin: 10px 0 0 0;
+    margin: 10px 0 10px 0;
 }
 
 .profile-icon{
@@ -373,14 +388,39 @@ h2{
 .pop-up{
     display: none;
     position: fixed;
+    justify-content: center;
     top: 20%;
     left: 5%;
     width: 90%;
     height: 60%;
     background-color: #FDFFF5;
     z-index: 2;
+    padding-top: 50px;
+    padding-left: 7%;
 }
 
 .annulation{
-    bottom: 95px;
+    margin-top: 5px;
+}
+
+#confirm-signUp-meal{
+    background-color: #007D00;
+    margin-top: 150px;
+}
+
+.guestsList{
+    padding-left: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.guestItem{
+    margin-right: 10px;
+}
+
+.guestsList-meal{
+    position: absolute;
+    top: 475px;
+    right: 10%;
 }
