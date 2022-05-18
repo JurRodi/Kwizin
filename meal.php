@@ -14,6 +14,8 @@
     $id = 1;
     $user = User::getById($id);
 
+    $guests = Meal::getGuests($meal['id']);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,8 +39,13 @@
             <h2><?php echo $meal['name'] ?></h2>
             <p><?php echo $culture['name'] ?></p>
             <p><?php echo $host['firstname'] ?></p>
-            <p><?php echo $meal['location'] ?></p>
-            <p><?php echo $meal['meetingTime'] ?></p> 
+            <p><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
+            <p class="red"><?php echo $date . " om " . $time ?></p> 
+            <ul class=" guestsList guestsList-meal">
+                <?php foreach($guests as $guest): ?>
+                    <li class="guestItem"><img class="avatar small" src="images/<?php echo $guest['avatar'] ?>" alt="<?php echo $guest['firstname'] ?>"></li>
+                <?php endforeach; ?>
+            </ul>
         </div> 
     </div>
     <div class="content">
@@ -53,14 +60,16 @@
     <div class="pop-up">
         <h2 class="centered">Je bent ingeschreven bij <?php echo $host['firstname'] ?></h2>
         <p class="centered"><?php echo "Op " . $date . " om " . $time . " in " . $meal['location']?></p>
-        <ul class="centered">
-            <p>Samen met:</p>
-            <?php foreach($ingredients as $ingredient): ?>
-                <li><?php echo $ingredient['name'] ?></li>
-            <?php endforeach; ?>
-        </ul>
-        <div class="centered bottom"><a class="button" id="confirm-signUp-meal" href="#">Doorgaan</a></div>
-        <div class="centered bottom annulation"><a id="annulation" href="#">Annuleren</a></div>
+        <p class="centered">Samen met:</p>
+        <div class="centered">
+            <ul class="guestsList">
+                <?php foreach($guests as $guest): ?>
+                    <li class="guestItem"><img class="avatar medium" src="images/<?php echo $guest['avatar'] ?>" alt="<?php echo $guest['firstname'] ?>"></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="centered"><a class="button" id="confirm-signUp-meal" href="#">Doorgaan</a></div>
+        <div class="centered annulation"><a id="annulation" href="#">Annuleren</a></div>
     </div>
     <script src="scripts/script.js"></script>
 </body>
