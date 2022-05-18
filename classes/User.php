@@ -151,7 +151,7 @@
 
         public static function getAllPrevConnected($id){
                 $conn = Db::getConnection();
-                $stmt = $conn->prepare("SELECT * FROM users WHERE id IN (SELECT reconnect_id FROM connections WHERE user_id = :id)");//"SELECT * FROM users WHERE id IN (SELECT user_id FROM connections WHERE user_id = :id)"
+                $stmt = $conn->prepare("SELECT * FROM users WHERE id IN (SELECT reconnect_id FROM connections WHERE user_id = :id)");
                 $stmt->bindValue(":id", $id);
                 $stmt->execute();
                 return $stmt->fetchAll();
@@ -163,6 +163,30 @@
                 $stmt->bindValue(":id", $id);
                 $stmt->execute();
                 return $stmt->fetch();
+        }
+
+        public static function getAllMeals($id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM meals WHERE user_id = :id");
+                $stmt->bindValue(":id", $id);
+                $stmt->execute();
+                return $stmt->fetchAll();
+        }
+
+        public static function calculateUserRating($user_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT AVG(user_rating) FROM reviews WHERE meal_id IN (SELECT id FROM meals WHERE user_id = :user_id)");
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->execute();
+                return round($stmt->fetch()[0]);
+        }
+
+        public static function calculateCookingRating($user_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT AVG(meal_rating) FROM reviews WHERE meal_id IN (SELECT id FROM meals WHERE user_id = :user_id)");
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->execute();
+                return round($stmt->fetch()[0]);
         }
     }
 ?>
