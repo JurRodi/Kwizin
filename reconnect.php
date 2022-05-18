@@ -24,8 +24,8 @@
         <div class="centered"><a class="button" href="">Eetverzoeken</a></div>
     </div>
     <div class="">
-        <?php foreach($connectedUsers as $connectedUser): ?>
-            <a href="chat.php?u=<?php echo $connectedUser['firstname'] ?>" class="chat">
+        <?php foreach($connectedUsers as $connectedUser): $token = md5($connectedUser['firstname'].rand(10,9999));?> 
+            <a href="chat.php?u=<?php echo $token ?>" class="chat">
                 <img class="avatar chat-avatar" src="images/<?php echo $connectedUser['avatar'] ?>" alt="<?php echo $connectedUser['firstname'] ?>">
                 <div class="chat-details">
                     <h3 class="red"><?php echo $connectedUser['firstname']." ".$connectedUser['lastname'] ?></h3>
