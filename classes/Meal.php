@@ -147,11 +147,12 @@
             return $stmt->fetch();
         }
 
-        public static function getAllGuests(){
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM meal_users");
-            $stmt->execute();
-            return $stmt->fetchAll();
+        public static function getGuests($meal_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM users WHERE id IN (SELECT user_id FROM meal_users WHERE meal_id = :meal_id)");
+                $stmt->bindValue(":meal_id", $meal_id);
+                $stmt->execute();
+                return $stmt->fetchAll();
         }
 
         public static function countGuests($meal_id){
@@ -176,9 +177,9 @@
                 return $conn->lastInsertId();
         }
 
-        public static function calculateRating($meal_id){
+        public static function calculateMealRating($meal_id){
                 $conn = Db::getConnection();
-                $stmt = $conn->prepare("SELECT AVG(rating) FROM reviews WHERE meal_id = :meal_id");
+                $stmt = $conn->prepare("SELECT AVG(meal_rating) FROM reviews WHERE meal_id = :meal_id");
                 $stmt->bindValue(":meal_id", $meal_id);
                 $stmt->execute();
                 return round($stmt->fetch()[0]);
