@@ -6,6 +6,7 @@ body{
     margin: 20px 0 0 0;
     padding: 0;
     font-family: Myriad Pro, sans-serif;
+    overflow-x: hidden;
 }
 
 input:focus{
@@ -47,8 +48,18 @@ nav{
 
 .slide-bar{
     width: 100%;
+    height: 270px;
     display: flex;
     flex-wrap: nowrap;
+    /* cursor: grab; */
+    overflow: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.slide-bar::-webkit-scrollbar{
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .meal{
@@ -60,7 +71,7 @@ nav{
 }
 
 .feed-image{
-    width: 100%;
+    width: 250px;
     height: 60%;
     background-size: cover;
     background-position: center;
@@ -71,16 +82,15 @@ nav{
     width: 100%;
     height: 40%;
     padding-top: 10px;
+    display: flex;
 }
 
 .avatar-feed{
-    position: absolute;
     margin-left: 10px;
-    z-index: -1;
 }
 
 .meal-title{
-    margin: 0 0 0 70px;
+    margin: 0 0 0 10px;
     font-weight: normal;
 }
 
@@ -98,7 +108,7 @@ nav{
 .guests{
     display: flex;
     align-items: center;
-    margin-left: 180px;
+    margin: 0 0 0 120px;
 }
 
 .amoutOfGuests{
@@ -370,10 +380,21 @@ h2{
     height: 30px;
 }
 
+.extraProfile{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-right: 7%;
+}
+
 .rating{
     width: 160px;
     display: flex;
     justify-content: space-between;
+}
+
+.own-meals{
+    border-bottom: #040301 solid 1px;
 }
 
 .meal-image{
@@ -406,6 +427,7 @@ h2{
 #confirm-signUp-meal{
     background-color: #007D00;
     margin-top: 150px;
+    margin-left: -2%;
 }
 
 .guestsList{
@@ -423,4 +445,61 @@ h2{
     position: absolute;
     top: 475px;
     right: 10%;
+}
+
+.review{
+    
+    border-bottom: #E4E4E4 dashed 3px;
+}
+
+.review-title{
+    margin-left: 7%;
+}
+
+.review-author{
+    margin-right: 10px;
+}
+
+.review-content{
+    display: flex;
+    align-items: center;
+    height: 130px;
+    margin-left: 7%;
+}
+
+.review-header{
+    display: flex;
+    align-items: center;
+}
+
+.review-icon{
+    width: 24px;
+    height: 24px;
+}
+
+.review-rating{
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-avatar{
+    margin-right: 10px;
+}
+
+.review-text{
+    margin: 0 0 0 0;
+}
+
+.profile-more{
+    font-size: 18px;
+    margin: 40px 0 30px 7%;
+    width: 86%;
+    align-items: center;
+}
+
+.profile-more-icon{
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0 10px;
 }
