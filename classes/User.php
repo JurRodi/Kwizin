@@ -188,5 +188,13 @@
                 $stmt->execute();
                 return round($stmt->fetch()[0]);
         }
+
+        public static function getFavorits($id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM meals WHERE id IN (SELECT meal_id FROM favorites WHERE user_id = :id)");
+                $stmt->bindValue(":id", $id);
+                $stmt->execute();
+                return $stmt->fetchAll();
+        }
     }
 ?>
