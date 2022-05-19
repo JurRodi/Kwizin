@@ -1,28 +1,48 @@
 <?php 
 
     class Review{
-        protected $rating;
+        protected $meal_rating;
+        protected $user_rating;
         protected $text;
         protected $meal_id;
         protected $user_id;
-        protected $receiving_user_id;
 
         /**
-         * Get the value of rating
+         * Get the value of meal_rating
          */ 
-        public function getRating()
+        public function getMeal_rating()
         {
-                return $this->rating;
+                return $this->meal_rating;
         }
 
         /**
-         * Set the value of rating
+         * Set the value of meal_rating
          *
          * @return  self
          */ 
-        public function setRating($rating)
+        public function setMeal_rating($meal_rating)
         {
-                $this->rating = $rating;
+                $this->meal_rating = $meal_rating;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of user_rating
+         */ 
+        public function getUser_rating()
+        {
+                return $this->user_rating;
+        }
+
+        /**
+         * Set the value of user_rating
+         *
+         * @return  self
+         */ 
+        public function setUser_rating($user_rating)
+        {
+                $this->user_rating = $user_rating;
 
                 return $this;
         }
@@ -87,31 +107,27 @@
                 return $this;
         }
 
-        /**
-         * Get the value of receiving_user_id
-         */ 
-        public function getReceiving_user_id()
-        {
-                return $this->receiving_user_id;
-        }
-
-        /**
-         * Set the value of receiving_user_id
-         *
-         * @return  self
-         */ 
-        public function setReceiving_user_id($receiving_user_id)
-        {
-                $this->receiving_user_id = $receiving_user_id;
-
-                return $this;
-        }
-
         public static function getReviewsByMealId($meal_id){
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM reviews WHERE meal_id = :meal_id");
             $stmt->bindValue(":meal_id", $meal_id);
             $stmt->execute();
             return $stmt->fetchAll();
+        }
+
+        public static function getAllReviewsByUser($user_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM reviews WHERE meal_id IN (SELECT id FROM meals WHERE user_id = :user_id)");
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->execute();
+                return $stmt->fetchAll();
+        }
+
+        public static function getRatingFromReviewer($user_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT user_rating FROM reviews WHERE user_id = :user_id");
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->execute();
+                return $stmt->fetch()[0];
         }
     }
