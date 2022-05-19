@@ -26,36 +26,38 @@
     <link rel="stylesheet" href="styling/style.css">
 </head>
 <body>
-    <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <?php $culture = Culture::getById($meal['culture_id']) ?>
-    <div class="meal-details">
-        <div class="floating-icons floating-icons-meal">
-            <a href="feed.php"><img class="icon" src="icons/Icon-arrow.png" alt="arrow-button"></a>
-            <a href=""><img class="icon" src="icons/Icon-share.png" alt="share-button"></a>
+    <div class="pop-up-bg">
+        <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
+        <?php $culture = Culture::getById($meal['culture_id']) ?>
+        <div class="meal-details">
+            <div class="floating-icons floating-icons-meal">
+                <a href="feed.php"><img class="icon" src="icons/Icon-arrow.png" alt="arrow-button"></a>
+                <a href=""><img class="icon" src="icons/Icon-share.png" alt="share-button"></a>
+            </div>
+            <div><img class="detail-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
+            <div class="meal-avatar"><img class="avatar big" src="images/<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>"></div>
+            <div class="content">
+                <h2><?php echo $meal['name'] ?></h2>
+                <p><?php echo $culture['name'] ?></p>
+                <p><?php echo $host['firstname'] ?></p>
+                <p><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
+                <p class="red"><?php echo $date . " om " . $time ?></p> 
+                <ul class=" guestsList guestsList-meal">
+                    <?php foreach($guests as $guest): ?>
+                        <li class="guestItem"><img class="avatar small" src="images/<?php echo $guest['avatar'] ?>" alt="<?php echo $guest['firstname'] ?>"></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div> 
         </div>
-        <div><img class="detail-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
-        <div class="meal-avatar"><img class="avatar big" src="images/<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>"></div>
         <div class="content">
-            <h2><?php echo $meal['name'] ?></h2>
-            <p><?php echo $culture['name'] ?></p>
-            <p><?php echo $host['firstname'] ?></p>
-            <p><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
-            <p class="red"><?php echo $date . " om " . $time ?></p> 
-            <ul class=" guestsList guestsList-meal">
-                <?php foreach($guests as $guest): ?>
-                    <li class="guestItem"><img class="avatar small" src="images/<?php echo $guest['avatar'] ?>" alt="<?php echo $guest['firstname'] ?>"></li>
+            <p><?php echo $meal['description'] ?></p>
+            <ul>
+                <?php foreach($ingredients as $ingredient): ?>
+                    <li><?php echo $ingredient['name'] ?></li>
                 <?php endforeach; ?>
             </ul>
-        </div> 
-    </div>
-    <div class="content">
-        <p><?php echo $meal['description'] ?></p>
-        <ul>
-            <?php foreach($ingredients as $ingredient): ?>
-                <li><?php echo $ingredient['name'] ?></li>
-            <?php endforeach; ?>
-        </ul>
-        <div class="centered bottom" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
+            <div class="centered bottom" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
+        </div>
     </div>
     <div class="pop-up">
         <h2 class="centered">Je bent ingeschreven bij <?php echo $host['firstname'] ?></h2>
@@ -71,6 +73,6 @@
         <div class="centered"><a class="button" id="confirm-signUp-meal" href="#">Doorgaan</a></div>
         <div class="centered annulation"><a id="annulation" href="#">Annuleren</a></div>
     </div>
-    <script src="scripts/script.js"></script>
+    <script src="scripts/mealPopUp.js"></script>
 </body>
 </html>
