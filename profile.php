@@ -4,7 +4,10 @@
 
     $id = 1;
     $user = User::getById($id);
-    $meals = Meal::getMealsByUser($id);
+    $meals = Meal::getMealsByUser($user['id']);
+    $favorites = User::getFavorits($user['id']);
+    $reviews = Review::getAllReviewsByUser($user['id']);
+    $bestMeals = Meal::getBestMeals();
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -54,7 +57,9 @@
         <div class="favoriteMeals">
             <h3 class="red">Favoriete gerechten</h3>
             <ul>
-                <li><?php echo $user['favorites'] ?></li>
+                <?php foreach($favorites as $favorite): ?>
+                    <li><?php echo $favorite['name'] ?></li>
+                <?php endforeach; ?>
             </ul>
         </div>
         <div class="cultures">
@@ -65,7 +70,27 @@
         </div>
     </div>
     <div class="best-meals content-line">
-
+        <h3 class="red">Beste gerechten</h3>
+        <div class="profile-meals">
+            <?php foreach($bestMeals as $bestMeal): ?>
+                <div class="profile-meal">
+                    <img class="meal-image" src="images/<?php echo $bestMeal['image'] ?>" alt="<?php echo $bestMeal['name'] ?>">
+                    <div class="meal-content">
+                        <h4 class="profile-meal-title red"><?php echo $bestMeal['name'] ?></h4>
+                        <?php $rating = Meal::calculateMealRating($bestMeal['id']) ?>
+                        <div class="rating">
+                            <?php for($i = 5; $i > 0; $i--): ?>   
+                                <?php if($rating > 0): ?>
+                                    <div><img class="profile-icon" src="icons/Icon-star.svg" alt="star-icon"></div>
+                                <?php else: ?>
+                                    <div><img class="profile-icon" src="icons/Icon-star-grey.svg" alt="star-icon"></div>
+                                <?php endif; $rating--?>
+                            <?php endfor; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
     <div class="own-meals content-line">
         <div class="profile-heading">
@@ -92,6 +117,36 @@
                 </div>
             <?php endforeach; ?>
         </div>
+        <a href="meals.php" class="red profile-more centered">Meer gerechten<img class="profile-more-icon" src="icons/Icon-arrow-red.svg" alt="arrow-icon"></a>
     </div>
+    <div class="reviews">
+        <h3 class="red review-title">Reviews</h3>
+        <div class="reviews-content">
+            <?php foreach($reviews as $review): $reviewer = User::getById($review['user_id']); $rating = Review::getRatingFromReviewer($review['user_id']); ?>
+                <div class="review">
+                    <div class="review-content">
+                        <img class="avatar review-avatar" src="images/<?php echo $reviewer['avatar'] ?>" alt="<?php echo $reviewer['firstname'] ?>">
+                        <div>
+                            <div class="review-header">
+                                <p class="review-author"><?php echo $reviewer['firstname'] ?></p>
+                                <div class="review-rating">
+                                    <?php for($i = 5; $i > 0; $i--): ?>
+                                        <?php if($rating > 0): ?>
+                                            <div><img class="review-icon" src="icons/Icon-star.svg" alt="star-icon"></div>
+                                        <?php else: ?>
+                                            <div><img class="review-icon" src="icons/Icon-star-grey.svg" alt="star-icon"></div>
+                                        <?php endif; $rating--?>
+                                    <?php endfor; ?>
+                                </div>
+                            </div>
+                            <p class="review-text"><?php echo $review['text'] ?></p>
+                        </div>
+                    </div>                    
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <a href="reviews.php" class="red profile-more centered">Meer reviews<img class="profile-more-icon" src="icons/Icon-arrow-red.svg" alt="arrow-icon"></a>
+    </div>
+    <div class="whiteSpace"></div>
 </body>
 </html>
