@@ -27,21 +27,23 @@
     </div>
     <div class="content suggestions">
         <h2>Aanbevolen voor jou</h2>
-        <div class="slide-bar">
+        <div id="slider1" class="slide-bar">
         <?php foreach($suggestedMeals as $meal): $host = Meal::getUserById($meal['user_id']); ?>
-            <a href="meal.php?id=<?php echo $meal['id'] ?>">
-                <div class="meal">
+            <div class="meal">
+                <a href="meal.php?id=<?php echo $meal['id'] ?>">
                     <img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
                     <div class="feed-details">
                         <img class="avatar avatar-feed" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
-                        <h3 class="meal-title"><?php echo $meal['name'] ?></h3>
-                        <div class="guests">
-                            <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
-                            <div class="iconPeople"></div>
+                        <div>
+                            <h3 class="meal-title"><?php echo $meal['name'] ?></h3>
+                            <div class="guests">
+                                <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
+                                <div class="iconPeople"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         <?php endforeach; ?>
         </div>
     </div>
@@ -55,10 +57,12 @@
                         <img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
                         <div class="feed-details">
                             <img class="avatar avatar-feed" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
-                            <h3 class="meal-title"><?php echo $meal['name'] ?></h3>
-                            <div class="guests">
-                                <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
-                                <div class="iconPeople"></div>
+                                <div>
+                                <h3 class="meal-title"><?php echo $meal['name'] ?></h3>
+                                <div class="guests">
+                                    <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
+                                    <div class="iconPeople"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,6 +72,6 @@
         </div>
     <?php endforeach; ?>
     <div class="whiteSpace"></div>
-    <script src="scripts/script.js"></script>
+    <script src="scripts/feedSlider.js"></script>
 </body>
 </html>
