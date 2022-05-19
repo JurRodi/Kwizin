@@ -125,11 +125,19 @@
 
         public static function getMealsByUser($user_id){
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM meals WHERE user_id = :user_id");
+            $stmt = $conn->prepare("SELECT * FROM meals WHERE user_id = :user_id LIMIT 6");
             $stmt->bindValue(":user_id", $user_id);
             $stmt->execute();
             return $stmt->fetchAll();
         }
+
+        public static function getAllMealsByUser($user_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM meals WHERE user_id = :user_id");
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->execute();
+                return $stmt->fetchAll();
+            }
 
         public static function getById($id){
             $conn = Db::getConnection();
@@ -183,5 +191,20 @@
                 $stmt->bindValue(":meal_id", $meal_id);
                 $stmt->execute();
                 return round($stmt->fetch()[0]);
+        }
+
+        public static function getBestMeals(){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM meals WHERE id IN (SELECT meal_id FROM reviews ORDER BY meal_rating DESC) LIMIT 3"); //SELECT meal_id FROM reviews WHERE meal_id IN (SELECT id FROM meals WHERE user_id = :user_id) ORDER BY meal_rating DESC LIMIT 3
+                $stmt->execute();
+                return $stmt->fetchAll();
+        }
+
+        public static function signUp($user_id, $meal_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("INSERT INTO meal_users (user_id, meal_id) VALUES (:user_id, :meal_id)");
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->bindValue(":meal_id", $meal_id);
+                return $stmt->execute();
         }
     }
