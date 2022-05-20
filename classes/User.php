@@ -64,7 +64,12 @@
          */ 
         public function setEmail($email)
         {
-                $this->email = $email;
+                if(empty($email)){
+                        throw new Exception("Email kan niet leeg zijn");
+                }
+                else{
+                        $this->email = $email;
+                }
 
                 return $this;
         }
@@ -84,6 +89,9 @@
          */ 
         public function setPassword($password)
         {
+                if(strlen($password) < 6){
+                        throw new Exception("het wachtwoord moet minimaal 6 karakters lang zijn.");
+                }
                 $this->password = $password;
 
                 return $this;
@@ -149,6 +157,50 @@
                 return $this;
         }
 
+        public function canLogin(){
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from users where email = :email");
+                $statement->bindValue(":email", $this->email);
+                $statement->execute();
+                $realUser = $statement->fetch();
+                if(!$realUser){
+                        throw new Exception("Deze gebruiker bestaat niet");
+                }
+                $hash = $realUser["password"];
+                if(password_verify($this->password, $hash)){
+                        return true;
+                }
+                else{
+                        throw new Exception("Wachtwoord is incorrect");
+                }
+        }
+
+        public function checkIfEmailExists($email){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+                $stmt->bindValue(":email", $email);
+                $stmt->execute();
+                return $stmt->fetch();
+        }
+
+        public function register() {
+                if($this->checkIfEmailExists($this->email)){
+                        throw new Exception("Email bestaat al");
+                }
+                $options = [
+                    'cost' => 14
+                ];
+                $password = password_hash($this->password, PASSWORD_DEFAULT, $options);
+    
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("insert into users (firstname, lastname, email, password) values (:firstname, :lastname, :email, :password);");
+                $statement->bindValue(":firstname", $this->firstName);
+                $statement->bindValue(":lastname", $this->lastName);
+                $statement->bindValue(':email', $this->email);
+                $statement->bindValue(':password', $password);
+                return $statement->execute();
+            }
+
         public static function getAllPrevConnected($id){
                 $conn = Db::getConnection();
                 $stmt = $conn->prepare("SELECT * FROM users WHERE id IN (SELECT reconnect_id FROM connections WHERE user_id = :id)");
@@ -161,6 +213,14 @@
                 $conn = Db::getConnection();
                 $stmt = $conn->prepare("SELECT * FROM users WHERE id = :id");
                 $stmt->bindValue(":id", $id);
+                $stmt->execute();
+                return $stmt->fetch();
+        }
+
+        public static function getByEmail($email){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+                $stmt->bindValue(":email", $email);
                 $stmt->execute();
                 return $stmt->fetch();
         }
