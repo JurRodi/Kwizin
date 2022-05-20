@@ -1,9 +1,9 @@
 <?php 
 
     include_once(__DIR__."/bootstrap.php");
+    Security::onlyLoggedInUsers();
 
-    $id = 1;
-    $user = User::getById($id);
+    $user = User::getByEmail($_SESSION['email']);
     $cultures = Culture::getAll();
 
     if(isset($_POST['mealUpload'])){

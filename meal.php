@@ -1,7 +1,7 @@
 <?php 
 
     include_once(__DIR__ . "/bootstrap.php");
-    //Security::onlyLoggedInUsers();
+    Security::onlyLoggedInUsers();
 
     $meal = Meal::getById($_GET['id']);
     $host = Meal::getUserById($meal['user_id']);
@@ -11,8 +11,7 @@
     $date = $datetime->format('d-m-Y');
     $time = $datetime->format('H:i');
 
-    $id = 1;
-    $user = User::getById($id);
+    $user = User::getByEmail($_SESSION['email']);
 
     $guests = Meal::getGuests($meal['id']);
 

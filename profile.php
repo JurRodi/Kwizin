@@ -1,9 +1,9 @@
 <?php 
 
     include_once(__DIR__."/bootstrap.php");
+    Security::onlyLoggedInUsers();
 
-    $id = 1;
-    $user = User::getById($id);
+    $user = User::getByEmail($_SESSION['email']);
     $meals = Meal::getMealsByUser($user['id']);
     $favorites = User::getFavorits($user['id']);
     $reviews = Review::getAllReviewsByUser($user['id']);
@@ -22,7 +22,7 @@
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
 
     <div class="floating-icons right">
-        <a href="profile.php"><img class="icon" src="icons/Icon-menu.svg" alt="arrow-button"></a>
+        <a href="logout.php"><img class="icon" src="icons/Icon-menu.svg" alt="arrow-button"></a>
     </div>
 
     <div class="profile content-line ">

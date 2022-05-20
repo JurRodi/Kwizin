@@ -1,9 +1,10 @@
 <?php 
 
     include_once(__DIR__."/bootstrap.php");
+    Security::onlyLoggedInUsers();
 
-    $id = 1;
-    $connectedUsers = User::getAllPrevConnected($id);
+    $user = User::getByEmail($_SESSION['email']);
+    $connectedUsers = User::getAllPrevConnected($user['id']);
 
 ?><!DOCTYPE html>
 <html lang="en">

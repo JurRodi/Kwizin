@@ -1,8 +1,9 @@
 <?php 
 
     include_once(__DIR__ . "/bootstrap.php");
-    //Security::onlyLoggedInUsers();
+    Security::onlyLoggedInUsers();
 
+    $user = User::getByEmail($_SESSION['email']);
     $suggestedMeals = Meal::getAll();
     $cultures = Culture::getAll();
 
@@ -50,10 +51,10 @@
     <?php foreach($cultures as $culture): ?>
         <div class="content culture">
             <h2><?php echo $culture['name'] . " keuken" ?></h2>
-            <div class="slide-bar">
+            <div id="" class="slide-bar">
             <?php foreach(Meal::getMealsByCulture($culture['id']) as $meal): $host = Meal::getUserById($meal['user_id']); ?>
-                <a href="meal.php?id=<?php echo $meal['id'] ?>">
-                    <div class="meal">
+                <div class="meal">        
+                    <a href="meal.php?id=<?php echo $meal['id'] ?>">
                         <img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
                         <div class="feed-details">
                             <img class="avatar avatar-feed" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
@@ -65,8 +66,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             <?php endforeach; ?>
             </div>
         </div>
