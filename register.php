@@ -37,7 +37,7 @@
 
     <div class="welcome">
         <img class="welcome-logo" src="images/Kwizin_logo.png" alt="Kwizin-logo">
-        <form action="" method="POST">
+        <form action="" method="POST" class="login-form">
             <div class="form-group">
                 <label for="email">Voornaam</label>
                 <input type="text" name="firstname" class="form-input">

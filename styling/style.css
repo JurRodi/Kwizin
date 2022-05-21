@@ -503,7 +503,7 @@ h2{
     margin: -3px 0 0 10px;
 }
 
-#welcome-body{
+#welcome-bodyf{
     overflow: hidden;
 }
 
@@ -536,7 +536,7 @@ h2{
 }
 
 .welcome-bg{
-    position: absolute;
+    position: fixed;
     z-index: -1;
 }
 
@@ -568,4 +568,8 @@ h2{
 
 #itsMe{
     margin-top: 40px;
+}
+
+.login-form{
+    margin-top: 10px;
 }
