@@ -123,6 +123,14 @@
                 return $stmt->fetchAll();
         }
 
+        public static function getReviewsByUser($user_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM reviews WHERE meal_id IN (SELECT id FROM meals WHERE user_id = :user_id) LIMIT 3");
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->execute();
+                return $stmt->fetchAll();
+        }
+
         public static function getRatingFromReviewer($user_id){
                 $conn = Db::getConnection();
                 $stmt = $conn->prepare("SELECT user_rating FROM reviews WHERE user_id = :user_id");
