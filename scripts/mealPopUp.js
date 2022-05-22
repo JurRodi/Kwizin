@@ -1,6 +1,6 @@
 document.querySelector('#signUp-meal').addEventListener('click', function() {
     document.querySelector('.pop-up').style.display = 'block';
-    document.querySelector('.pop-up-bg').style.opacity = '0.5';
+    document.querySelector('.pop-up-bg').style.opacity = '0.2';
 });
 
 document.querySelector('#confirm-signUp-meal').addEventListener('click', function() {
