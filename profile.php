@@ -6,7 +6,7 @@
     $user = User::getByEmail($_SESSION['email']);
     $meals = Meal::getMealsByUser($user['id']);
     $favorites = User::getFavorits($user['id']);
-    $reviews = Review::getAllReviewsByUser($user['id']);
+    $reviews = Review::getReviewsByUser($user['id']);
     $bestMeals = Meal::getBestMeals();
 
 ?><!DOCTYPE html>

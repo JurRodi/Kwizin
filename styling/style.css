@@ -412,11 +412,15 @@ h2{
     top: 20%;
     left: 5%;
     width: 90%;
-    height: 60%;
+    height: 55%;
     background-color: #FDFFF5;
     z-index: 2;
     padding-top: 50px;
     padding-left: 7%;
+}
+
+#annulation{
+    margin-left: -2%;
 }
 
 .annulation{
@@ -425,7 +429,7 @@ h2{
 
 #confirm-signUp-meal{
     background-color: #007D00;
-    margin-top: 150px;
+    margin-top: 50px;
     margin-left: -2%;
 }
 

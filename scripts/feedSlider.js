@@ -1,6 +1,8 @@
-const ele = document.querySelectorAll('.slide-bar');
-ele.scrollTop = 100;
-ele.scrollLeft = 150;
+// const ele = document.getElementById('slider1');
+// ele.scrollTop = 100;
+// ele.scrollLeft = 0;
+// ele.style.cursor = 'grab';
+// ele.style.removeProperty('user-select');
 
 let pos = { top: 0, left: 0, x: 0, y: 0 };
 
@@ -35,4 +37,18 @@ const mouseUpHandler = function () {
     ele.style.cursor = 'grab';
     ele.style.removeProperty('user-select');
 };
-console.log('test');
+
+// ele.addEventListener('mousedown', mouseDownHandler);
+
+const sliders = document.querySelectorAll('.slide-bar');
+console.log(sliders);
+for(let i = 0; i < sliders.length; i++){
+    sliders[i].setAttribute('id', 'slider' + i);
+    let ele = document.getElementById('slider' + i);
+    ele.scrollTop = 100;
+    ele.scrollLeft = 0;
+    ele.style.cursor = 'grab';
+    ele.style.removeProperty('user-select');
+    console.log(ele);
+    ele.addEventListener('mousedown', mouseDownHandler);
+}

@@ -15,6 +15,11 @@
 
     $guests = Meal::getGuests($meal['id']);
 
+    if(isset($_POST['signUp'])){
+        Meal::signUp($user['id'], $meal['id'], $meal['user_id']);
+        header("Location: meal.php?id=" . $meal['id']);
+    }
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,10 +39,10 @@
                 <a href=""><img class="icon" src="icons/Icon-share.png" alt="share-button"></a>
             </div>
             <div><img class="detail-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
-            <div class="meal-avatar"><img class="avatar big" src="images/<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>"></div>
+            <div class="meal-avatar"><img class="avatar big" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>"></div>
             <div class="content">
                 <h2><?php echo $meal['name'] ?></h2>
-                <p><?php echo $culture['name'] ?></p>
+                <p><?php echo $culture['name'] . " keuken" ?></p>
                 <p><?php echo $host['firstname'] ?></p>
                 <p><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
                 <p class="red"><?php echo $date . " om " . $time ?></p> 
@@ -55,7 +60,9 @@
                     <li><?php echo $ingredient['name'] ?></li>
                 <?php endforeach; ?>
             </ul>
-            <div class="centered bottom" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
+            <?php if($guests === []): ?>
+                <div class="centered bottom" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="pop-up">
@@ -69,7 +76,9 @@
                 <?php endforeach; ?>
             </ul>
         </div>
-        <div class="centered"><a class="button" id="confirm-signUp-meal" href="#">Doorgaan</a></div>
+        <form method="POST">
+            <div class="centered"><input type="submit" name="signUp" value="Doorgaan" class="button form-button" id="confirm-signUp-meal"></div>
+        </form>
         <div class="centered annulation"><a id="annulation" href="#">Annuleren</a></div>
     </div>
     <script src="scripts/mealPopUp.js"></script>

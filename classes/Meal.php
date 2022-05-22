@@ -108,17 +108,19 @@
                 return $this;
         }
 
-        public static function getAll(){
+        public static function getAll($user_id){
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM meals");
+            $stmt = $conn->prepare("SELECT * FROM meals WHERE user_id != :user_id");
+            $stmt->bindValue(":user_id", $user_id);
             $stmt->execute();
             return $stmt->fetchAll();
         }
 
-        public static function getMealsByCulture($culture_id){
+        public static function getMealsByCulture($culture_id, $user_id){
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM meals WHERE culture_id = :culture_id");
+            $stmt = $conn->prepare("SELECT * FROM meals WHERE culture_id = :culture_id AND user_id != :user_id");
             $stmt->bindValue(":culture_id", $culture_id);
+            $stmt->bindValue(":user_id", $user_id);
             $stmt->execute();
             return $stmt->fetchAll();
         }
@@ -200,9 +202,33 @@
                 return $stmt->fetchAll();
         }
 
-        public static function signUp($user_id, $meal_id){
+        public static function signUp($user_id, $meal_id, $reconnect_id){
                 $conn = Db::getConnection();
-                $stmt = $conn->prepare("INSERT INTO meal_users (user_id, meal_id) VALUES (:user_id, :meal_id)");
+                $check = $conn->prepare("SELECT * FROM meal_users WHERE user_id = :user_id AND meal_id = :meal_id");
+                $check->bindValue(":user_id", $user_id);
+                $check->bindValue(":meal_id", $meal_id);
+                $check->execute();
+                if($check->rowCount() == 0){
+                    $stmt = $conn->prepare("INSERT INTO meal_users (user_id, meal_id) VALUES (:user_id, :meal_id)");
+                    $stmt->bindValue(":user_id", $user_id);
+                    $stmt->bindValue(":meal_id", $meal_id);
+                    $stmt->execute();
+                    $connCheck = $conn->prepare("SELECT * FROM connections WHERE user_id = :user_id AND reconnect_id = :reconnect_id");
+                    $connCheck->bindValue(":user_id", $user_id);
+                    $connCheck->bindValue(":reconnect_id", $reconnect_id);
+                    $connCheck->execute();
+                    if($connCheck->rowCount() == 0){
+                        $stmt = $conn->prepare("INSERT INTO connections (user_id, reconnect_id) VALUES (:user_id, :reconnect_id)");
+                        $stmt->bindValue(":user_id", $user_id);
+                        $stmt->bindValue(":reconnect_id", $reconnect_id);
+                        $stmt->execute();
+                    }
+                }
+        }
+
+        public static function cancelSignUp($user_id, $meal_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("DELETE FROM meal_users WHERE user_id = :user_id AND meal_id = :meal_id");
                 $stmt->bindValue(":user_id", $user_id);
                 $stmt->bindValue(":meal_id", $meal_id);
                 return $stmt->execute();

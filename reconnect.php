@@ -30,9 +30,9 @@
                 <img class="avatar chat-avatar" src="images/<?php echo $connectedUser['avatar'] ?>" alt="<?php echo $connectedUser['firstname'] ?>">
                 <div class="chat-details">
                     <h3 class="red"><?php echo $connectedUser['firstname']." ".$connectedUser['lastname'] ?></h3>
-                    <p class="chat-message"><?php //echo $user['message'] ?>dit wordt een bericht</p>
+                    <p class="chat-message"><?php echo $message = Message::getLastMessage($user['id'], $connectedUser['id']) ?></p>
                 </div>
-                <a href="" class="chat-icon"><img class="chat-reconnect" src="icons/Icon-reconnect.png" alt="reconnect-icon"></a>
+                <a href="#" class="chat-icon"><img class="chat-reconnect" src="icons/Icon-reconnect.png" alt="reconnect-icon"></a>
             </a>
         <?php endforeach; ?>
     </div>

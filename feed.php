@@ -4,7 +4,7 @@
     Security::onlyLoggedInUsers();
 
     $user = User::getByEmail($_SESSION['email']);
-    $suggestedMeals = Meal::getAll();
+    $suggestedMeals = Meal::getAll($user['id']);
     $cultures = Culture::getAll();
 
 ?><!DOCTYPE html>
@@ -52,7 +52,7 @@
         <div class="content culture">
             <h2><?php echo $culture['name'] . " keuken" ?></h2>
             <div id="" class="slide-bar">
-            <?php foreach(Meal::getMealsByCulture($culture['id']) as $meal): $host = Meal::getUserById($meal['user_id']); ?>
+            <?php foreach(Meal::getMealsByCulture($culture['id'], $user['id']) as $meal): $host = Meal::getUserById($meal['user_id']); ?>
                 <div class="meal">        
                     <a href="meal.php?id=<?php echo $meal['id'] ?>">
                         <img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
