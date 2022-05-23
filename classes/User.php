@@ -256,5 +256,14 @@
                 $stmt->execute();
                 return $stmt->fetchAll();
         }
+
+        public static function getChatUser($reconnect_id, $user_id){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM users WHERE id IN (SELECT reconnect_id FROM connections WHERE reconnect_id = :reconnect_id AND user_id = :user_id)");
+                $stmt->bindValue(":reconnect_id", $reconnect_id);
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->execute();
+                return $stmt->fetch();
+        }
     }
 ?>
