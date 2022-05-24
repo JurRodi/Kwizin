@@ -6,6 +6,20 @@
     $user = User::getByEmail($_SESSION['email']);
     $suggestedMeals = Meal::getAll($user['id']);
     $cultures = Culture::getAll();
+    $title = "Aanbevolen voor jou";
+    $skip = 0;
+
+    if(isset($_GET['s'])){
+        $search = $_GET['s'];
+        $suggestedMeals = Meal::searchMealByName($search);
+        if(count($suggestedMeals) == 0){
+            $title = "Geen resultaten gevonden voor '$search'";
+            $skip = false;
+        } else {
+            $title = "Resultaten voor '$search'";
+            $skip = true;
+        }
+    }
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -22,12 +36,15 @@
 
     <div class="content">
         <a class="filter" href="filter.php">Filteren</a>
-        <form class="search-form">
-            <input type="text" name="search" class="search" >
+        <form class="search-form" method="GET">
+            <input type="text" id="search-meal" class="search" name="s" autocomplete="off">
+            <div id="search-meal-suggestions"></div>
         </form>
     </div>
+    
     <div class="content suggestions">
-        <h2>Aanbevolen voor jou</h2>
+        <h2><?php echo $title ?></h2>
+        <?php if($skip === 0 || $skip === true): ?>
         <div id="slider1" class="slide-bar">
         <?php foreach($suggestedMeals as $meal): $host = Meal::getUserById($meal['user_id']); ?>
             <div class="meal">
@@ -47,8 +64,9 @@
             </div>
         <?php endforeach; ?>
         </div>
+        <?php endif; ?>
     </div>
-    <?php foreach($cultures as $culture): ?>
+    <?php if($skip === 0 || $skip === false): foreach($cultures as $culture): ?>
         <div class="content culture">
             <h2><?php echo $culture['name'] . " keuken" ?></h2>
             <div id="" class="slide-bar">
@@ -71,8 +89,9 @@
             <?php endforeach; ?>
             </div>
         </div>
-    <?php endforeach; ?>
+    <?php endforeach; endif; ?>
     <div class="whiteSpace"></div>
     <script src="scripts/feedSlider.js"></script>
+    <script src="scripts/liveSearch.js"></script>
 </body>
 </html>

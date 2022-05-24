@@ -145,6 +145,16 @@ h2{
     font-size: 20px; 
 }
 
+#search-meal-suggestions{
+    padding-left: 3%;
+    width: 93%;
+    background-color: #E4E4E4;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
 #home{
     width: 43px;
     height: 33px;

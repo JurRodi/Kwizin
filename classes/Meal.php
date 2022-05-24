@@ -233,4 +233,20 @@
                 $stmt->bindValue(":meal_id", $meal_id);
                 return $stmt->execute();
         }
+
+        public static function getMealByName($name){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM meals WHERE name = :name");
+                $stmt->bindValue(":name", $name);
+                $stmt->execute();
+                return $stmt->fetch();
+        }
+
+        public static function searchMealByName($name){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM meals WHERE name LIKE :name");
+                $stmt->bindValue(":name", $name . "%");
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
