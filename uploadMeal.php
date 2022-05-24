@@ -44,7 +44,10 @@
         <label for="ingredients" class="red"><h3>Ingrediënten</h3></label>
         <input type="text" name="ingredients" id="ingredients" class="form-input" required>
         <label for="price" class="red"><h3>Prijs</h3></label>
-        <input type="range" name="price" id="price" min="0" max="150" value="5" class="form-input" required>
+        <div class="slideContainer">
+            <input type="range" name="price" id="price" min="0" max="150" value="10" class="form-input" required>
+            <output for="price" id="price-output"></output>
+        </div>
         <label for="image" class="red"><h3>Afbeelding</h3></label>
         <input type="file" name="image" id="image" required>
         <label for="location" class="red"><h3>Locatie</h3></label>
@@ -54,5 +57,7 @@
         <div class="centered form-button-align"><input type="submit" name="mealUpload" value="Voeg gerecht toe" class="button form-button"></div>
     </form>
     <div class="whiteSpace"></div>
+
+    <script src="scripts/addMealSlider.js"></script>
 </body>
 </html>

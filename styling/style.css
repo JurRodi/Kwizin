@@ -639,3 +639,53 @@ h2{
 .login-form{
     margin-top: 10px;
 }
+
+#price{
+    appearance: none;
+    -webkit-appearance: none;
+    background: #E4E4E4;
+    outline: none;
+    border: none;
+    opacity: 0.8;
+    height: 10px;
+    width: 100%;
+    transition: opacity 0.2s;
+    -webkit-transition: 0.2s;
+    
+}
+
+#price:hover{
+    opacity: 1;
+}
+
+#price::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #A91B0D;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+#price::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #04AA6D;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+#price-output{
+    width: 40px;
+    height: 20px;
+    margin: 0 0 0 0;
+    text-align: center;
+    font-size: 16px;
+    color: #040301;
+    position: absolute;
+}
+
+.slideContainer{
+    width: 100%;
+}
