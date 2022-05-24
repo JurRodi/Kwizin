@@ -5,6 +5,7 @@
 
     $user = User::getByEmail($_SESSION['email']);
     $connectedUsers = User::getAllPrevConnected($user['id']);
+    $reconnect_ids = [];
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -25,9 +26,9 @@
         <div class="centered"><a class="button" href="">Eetverzoeken</a></div>
     </div>
     <div class="">
-        <?php foreach($connectedUsers as $connectedUser): $token = md5($connectedUser['firstname'].rand(10,9999));?> 
+        <?php foreach($connectedUsers as $connectedUser): $token = md5($connectedUser['firstname'].rand(10,9999)); $reconnect_ids[$token] = $connectedUser['id']; $_SESSION['reconnect'] = $reconnect_ids; //var_dump($reconnect_ids); ?> 
             <a href="chat.php?u=<?php echo $token ?>" class="chat">
-                <img class="avatar chat-avatar" src="images/<?php echo $connectedUser['avatar'] ?>" alt="<?php echo $connectedUser['firstname'] ?>">
+                <img class="avatar reconnect-avatar" src="images/<?php echo $connectedUser['avatar'] ?>" alt="<?php echo $connectedUser['firstname'] ?>">
                 <div class="chat-details">
                     <h3 class="red"><?php echo $connectedUser['firstname']." ".$connectedUser['lastname'] ?></h3>
                     <p class="chat-message"><?php echo $message = Message::getLastMessage($user['id'], $connectedUser['id']) ?></p>
