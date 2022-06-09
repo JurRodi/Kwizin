@@ -265,9 +265,11 @@ h2{
 }
 
 .reconnect-details{
+    position: fixed;
     display: flex;
     flex-direction: row;
     height: 100px;
+    width: 100%;
     margin: -20px 0 0 0;
     padding: 10px 0 0 15%;
     background-color: #FDFFF5;
@@ -335,6 +337,7 @@ h2{
     width: 100%;
     height: 300px;
     margin-top: -20px;
+    background-position: center;
 }
 
 .meal-details{
@@ -344,11 +347,6 @@ h2{
 .bottom{
     position: absolute;
     bottom: 120px;
-}
-
-#signUp-button{
-    width: 100%;
-    margin-left: -7%;
 }
 
 .floating-icons{
@@ -361,6 +359,14 @@ h2{
     width: 92%;
     display: flex;
     justify-content: space-between;
+}
+
+.floating-icons-chat{
+    width: 92%;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 1;
 }
 
 .icon{
@@ -508,7 +514,7 @@ h2{
 
 .guestsList-meal{
     position: absolute;
-    top: 475px;
+    top: 440px;
     right: 10%;
 }
 
@@ -681,11 +687,88 @@ h2{
     height: 20px;
     margin: 0 0 0 0;
     text-align: center;
-    font-size: 16px;
     color: #040301;
-    position: absolute;
 }
 
 .slideContainer{
     width: 100%;
+}
+
+.add-ingredients{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-ingredient{
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+#ingredient{
+    width: 95%;
+}
+
+.ingredient{
+    margin: 5px 5px 5px 0;
+    padding: 10px 10px 10px 10px;
+    background-color: #E4E4E4;
+    border-radius: 5px;
+    width: 95%;
+}
+
+.culture{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.location{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.chat-messages{
+    display: flex;
+    flex-direction: column-reverse;
+    position: fixed;
+    width: 100%;
+    max-height: 100%;
+    bottom: 80px;
+    top: 100px;
+    padding: 0 10% 15px 10%;
+    z-index: -1;
+    overflow-y: scroll;
+}
+
+.chat-message-right{
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-top: 15px;
+    padding: 10px 10px 10px 10px;
+    min-width: fit-content;
+    max-width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+
+.chat-message-left{
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    margin-right: 5%;
+    margin-top: 15px;
+    padding: 10px 10px 10px 10px;
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+
+.chat-message-right-text{
+    margin-right: 10px;
+}
+
+.chat-message-left-text{
+    margin-left: 10px;
 }

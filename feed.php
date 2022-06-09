@@ -55,7 +55,7 @@
                         <div>
                             <h3 class="meal-title"><?php echo $meal['name'] ?></h3>
                             <div class="guests">
-                                <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
+                                <p class="amoutOfGuests culture"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
                                 <div class="iconPeople"></div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
         <?php endif; ?>
     </div>
     <?php if($skip === 0 || $skip === false): foreach($cultures as $culture): ?>
-        <div class="content culture">
+        <div class="content">
             <h2><?php echo $culture['name'] . " keuken" ?></h2>
             <div id="" class="slide-bar">
             <?php foreach(Meal::getMealsByCulture($culture['id'], $user['id']) as $meal): $host = Meal::getUserById($meal['user_id']); ?>
@@ -76,10 +76,10 @@
                         <img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
                         <div class="feed-details">
                             <img class="avatar avatar-feed" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
-                                <div>
+                            <div>
                                 <h3 class="meal-title"><?php echo $meal['name'] ?></h3>
                                 <div class="guests">
-                                    <p class="amoutOfGuests"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
+                                    <p class="amoutOfGuests culture"><?php echo $amoutOfGuests = Meal::countGuests($meal['id']); ?></p>
                                     <div class="iconPeople"></div>
                                 </div>
                             </div>
