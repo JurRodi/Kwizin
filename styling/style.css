@@ -759,7 +759,8 @@ h2{
     margin-right: 5%;
     margin-top: 15px;
     padding: 10px 10px 10px 10px;
-    width: 80%;
+    min-width: fit-content;
+    max-width: 80%;
     display: flex;
     justify-content: flex-start;
     align-self: flex-start;
