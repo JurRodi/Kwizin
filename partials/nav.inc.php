@@ -6,7 +6,7 @@
         </div>
     </a>
     <a href="feed.php">
-        <div class="nav-item <?php if(basename($_SERVER['PHP_SELF']) === "feed.php" || basename($_SERVER['PHP_SELF']) === "meal.php"){ echo "active";} ?>">
+        <div class="nav-item <?php if(basename($_SERVER['PHP_SELF']) === "feed.php" || basename($_SERVER['PHP_SELF']) === "meal.php" || basename($_SERVER['PHP_SELF']) === "filter.php"){ echo "active";} ?>">
             <img id="home" class="" src="icons/home.svg" alt="home-button">
             <p class="nav-title">home</p>
         </div>

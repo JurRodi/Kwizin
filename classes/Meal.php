@@ -242,11 +242,42 @@
                 return $stmt->fetch();
         }
 
-        public static function searchMealByName($name){
+        public static function searchMealByName($name, $user_id){
                 $conn = Db::getConnection();
-                $stmt = $conn->prepare("SELECT * FROM meals WHERE name LIKE :name");
+                $stmt = $conn->prepare("SELECT * FROM meals WHERE name LIKE :name AND user_id != :user_id");
                 $stmt->bindValue(":name", $name . "%");
+                $stmt->bindValue(":user_id", $user_id);
                 $stmt->execute();
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public static function filterMeals($filter, $user_id){
+                $conn = Db::getConnection();
+                if(!empty($filter["culture"]) && !empty($filter["city"])){
+                    $stmt = $conn->prepare("SELECT * FROM meals WHERE culture_id = :culture_id AND price <= :price AND location = :location AND user_id != :user_id");
+                    $stmt->bindValue(":culture_id", $filter["culture"]);
+                    $stmt->bindValue(":price", $filter["price"]);
+                    $stmt->bindValue(":location", $filter["city"]);
+                    $stmt->bindValue(":user_id", $user_id);
+                }
+                else if(!empty($filter["culture"])){
+                    $stmt = $conn->prepare("SELECT * FROM meals WHERE culture_id = :culture_id AND price <= :price AND user_id != :user_id");
+                    $stmt->bindValue(":culture_id", $filter["culture"]);
+                    $stmt->bindValue(":price", $filter["price"]);
+                    $stmt->bindValue(":user_id", $user_id);
+                }
+                else if(!empty($filter["city"])){
+                    $stmt = $conn->prepare("SELECT * FROM meals WHERE location = :location AND price <= :price AND user_id != :user_id");
+                    $stmt->bindValue(":location", $filter["city"]);
+                    $stmt->bindValue(":price", $filter["price"]);
+                    $stmt->bindValue(":user_id", $user_id);
+                }
+                else{
+                    $stmt = $conn->prepare("SELECT * FROM meals WHERE price <= :price AND user_id != :user_id");
+                    $stmt->bindValue(":price", $filter["price"]);
+                    $stmt->bindValue(":user_id", $user_id);
+                }
+                $stmt->execute();
+                return $stmt->fetchAll();
         }
     }

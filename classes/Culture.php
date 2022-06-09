@@ -37,4 +37,15 @@
             $stmt->execute();
             return $stmt->fetch();
         }
+
+        public static function getIdByName($name){
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT id FROM cultures WHERE name LIKE :name");
+            $stmt->bindValue(":name", $name . "%");
+            $stmt->execute();
+            if($stmt->rowCount() == 0){
+                return true;
+            }
+            return $stmt->fetch(PDO::FETCH_ASSOC)["id"];
+        }
     }

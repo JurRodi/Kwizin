@@ -7,17 +7,32 @@
     $suggestedMeals = Meal::getAll($user['id']);
     $cultures = Culture::getAll();
     $title = "Aanbevolen voor jou";
-    $skip = 0;
+    $view = 'standard';
 
     if(isset($_GET['s'])){
         $search = $_GET['s'];
-        $suggestedMeals = Meal::searchMealByName($search);
+        $suggestedMeals = Meal::searchMealByName($search, $user['id']);
         if(count($suggestedMeals) == 0){
             $title = "Geen resultaten gevonden voor '$search'";
-            $skip = false;
+            $view = 'no-suggestions';
         } else {
             $title = "Resultaten voor '$search'";
-            $skip = true;
+            $view = 'suggestions';
+        }
+    }
+
+    if(isset($_GET['filter'])){
+        $filter = $_GET;
+        if(!empty($filter['culture'])){
+            $filter['culture'] = Culture::getIdByName($filter['culture']);
+        }
+        $suggestedMeals = Meal::filterMeals($filter, $user['id']);
+        if(count($suggestedMeals) == 0){
+            $title = "Geen resultaten gevonden voor deze filter";
+            $view = 'no-suggestions';
+        } else {
+            $title = "Resultaten voor deze filter";
+            $view = 'suggestions';
         }
     }
 
@@ -44,7 +59,7 @@
     
     <div class="content suggestions">
         <h2><?php echo $title ?></h2>
-        <?php if($skip === 0 || $skip === true): ?>
+        <?php if($view === 'standard' || $view === 'suggestions'): ?>
         <div id="slider1" class="slide-bar">
         <?php foreach($suggestedMeals as $meal): $host = Meal::getUserById($meal['user_id']); ?>
             <div class="meal">
@@ -66,7 +81,7 @@
         </div>
         <?php endif; ?>
     </div>
-    <?php if($skip === 0 || $skip === false): foreach($cultures as $culture): ?>
+    <?php if($view === 'standard' || $view === 'no-suggestions'): foreach($cultures as $culture): ?>
         <div class="content">
             <h2><?php echo $culture['name'] . " keuken" ?></h2>
             <div id="" class="slide-bar">

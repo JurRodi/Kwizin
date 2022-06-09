@@ -15,7 +15,7 @@ const mouseDownHandler = function (e) {
         x: e.clientX,
         y: e.clientY,
     };
-    console.log(pos);
+    // console.log(pos);
     document.addEventListener('mousemove', mouseMoveHandler);
     document.addEventListener('mouseup', mouseUpHandler);
 };
@@ -41,7 +41,7 @@ const mouseUpHandler = function () {
 // ele.addEventListener('mousedown', mouseDownHandler);
 
 const sliders = document.querySelectorAll('.slide-bar');
-console.log(sliders);
+// console.log(sliders);
 for(let i = 0; i < sliders.length; i++){
     sliders[i].setAttribute('id', 'slider' + i);
     let ele = document.getElementById('slider' + i);
@@ -49,6 +49,6 @@ for(let i = 0; i < sliders.length; i++){
     ele.scrollLeft = 0;
     ele.style.cursor = 'grab';
     ele.style.removeProperty('user-select');
-    console.log(ele);
+    // console.log(ele);
     ele.addEventListener('mousedown', mouseDownHandler);
 }

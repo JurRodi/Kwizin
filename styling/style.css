@@ -38,6 +38,7 @@ nav{
     align-items: center;
     position: fixed;
     bottom: 0px;
+    z-index: 1;
 }
 
 .avatar{
@@ -646,7 +647,7 @@ h2{
     margin-top: 10px;
 }
 
-#price{
+.slider{
     appearance: none;
     -webkit-appearance: none;
     background: #E4E4E4;
@@ -660,11 +661,11 @@ h2{
     
 }
 
-#price:hover{
+.slider:hover{
     opacity: 1;
 }
 
-#price::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 22px;
@@ -674,7 +675,7 @@ h2{
     border-radius: 25px;
 }
 
-#price::-moz-range-thumb {
+.slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     background: #04AA6D;
@@ -682,7 +683,7 @@ h2{
     border-radius: 25px;
 }
 
-#price-output{
+.slider-output{
     width: 40px;
     height: 20px;
     margin: 0 0 0 0;
@@ -741,7 +742,7 @@ h2{
 }
 
 .chat-message-right{
-    background-color: #F5F5F5;
+    background-color: #A91B0D;
     border-radius: 5px;
     margin-left: 5%;
     margin-top: 15px;
@@ -772,4 +773,13 @@ h2{
 
 .chat-message-left-text{
     margin-left: 10px;
+}
+
+.filter-form{
+    width: 86%;
+}
+
+.filter-item{
+    padding: 30px 8% 60px 8%;
+    border-bottom: dashed 4px #E4E4E4;
 }
