@@ -138,4 +138,15 @@
                 $stmt->execute();
                 return $stmt->fetch()[0];
         }
+
+        public static function postReview($meal_id, $user_id, $user_rating, $meal_rating, $text){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("INSERT INTO reviews (meal_id, user_id, user_rating, meal_rating, text) VALUES (:meal_id, :user_id, :user_rating, :meal_rating, :text)");
+                $stmt->bindValue(":meal_id", $meal_id);
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->bindValue(":user_rating", $user_rating);
+                $stmt->bindValue(":meal_rating", $meal_rating);
+                $stmt->bindValue(":text", $text);
+                $stmt->execute();
+        }
     }

@@ -28,9 +28,11 @@
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
 
-    <div class="floating-icons right">
-        <a href="logout.php"><img class="icon" src="icons/Icon-menu.svg" alt="arrow-button"></a>
-    </div>
+    <?php if(isset($ownprofile)): ?>
+        <div class="floating-icons right">
+            <a href="logout.php"><img class="icon" src="icons/Icon-menu.svg" alt="arrow-button"></a>
+        </div>
+    <?php endif; ?>
 
     <div class="profile content-line ">
         <div class="centered"><img class="avatar big" src="images/<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>"></div>
@@ -157,9 +159,7 @@
             <?php endforeach; ?>
         </div>
         <a href="reviews.php" class="red profile-more centered">Meer reviews<img class="profile-more-icon" src="icons/Icon-arrow-red.svg" alt="arrow-icon"></a>
-        <?php if(isset($ownprofile)): ?>
-            <a href="review.php" ><div class="centered form-button-align"><input type="submit" name="review" value="Review toevoegen" id="review" class="button form-button"></div></a>
-        <?php endif; ?>
+        <a href="review.php?u=<?php echo $_GET['u'] ?>" ><div class="centered form-button-align"><input type="submit" name="review" value="Review toevoegen" id="review" class="button form-button"></div></a>
     </div>
     <div class="whiteSpace"></div>
 </body>
