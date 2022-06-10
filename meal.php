@@ -45,10 +45,12 @@
                 <p class="culture"><?php echo $culture['name'] . " keuken" ?></p>
                 <p class="location"><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
                 <p class="red"><?php echo $date . " om " . $time ?></p> 
-                <ul class=" guestsList guestsList-meal">
+                <p class="red price"><?php echo "€ " . $meal['price'] ?></p>
+                <ul class="guestsList guestsList-meal">
                     <?php foreach($guests as $guest): ?>
                         <li class="guestItem"><img class="avatar small" src="images/<?php echo $guest['avatar'] ?>" alt="<?php echo $guest['firstname'] ?>"></li>
                     <?php endforeach; ?>
+                    <p class="max-guests red"><?php echo "/" . $meal['max_guests'] ?></p>
                 </ul>
             </div> 
         </div>
