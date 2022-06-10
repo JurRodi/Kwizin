@@ -195,11 +195,19 @@
                 return round($stmt->fetch()[0]);
         }
 
-        public static function getBestMeals(){
+        public static function getBestMeals($user_id){
                 $conn = Db::getConnection();
-                $stmt = $conn->prepare("SELECT * FROM meals WHERE id IN (SELECT meal_id FROM reviews ORDER BY meal_rating DESC) LIMIT 3"); //SELECT meal_id FROM reviews WHERE meal_id IN (SELECT id FROM meals WHERE user_id = :user_id) ORDER BY meal_rating DESC LIMIT 3
+                $stmt = $conn->prepare("SELECT meal_id FROM reviews WHERE meal_id IN (SELECT id FROM meals WHERE user_id = :user_id) ORDER BY meal_rating DESC LIMIT 3");
+                $stmt->bindValue(":user_id", $user_id);
                 $stmt->execute();
-                return $stmt->fetchAll();
+                $meal_ids = $stmt->fetchAll();
+                if(count($meal_ids) == 0){
+                    return null;
+                }
+                foreach($meal_ids as $meal){
+                    $meals[] = self::getById($meal['meal_id']);
+                }
+                return $meals;
         }
 
         public static function signUp($user_id, $meal_id, $reconnect_id){

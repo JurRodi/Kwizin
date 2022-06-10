@@ -13,7 +13,7 @@
     $meals = Meal::getMealsByUser($user['id']);
     $favorites = User::getFavorits($user['id']);
     $reviews = Review::getReviewsByUser($user['id']);
-    $bestMeals = Meal::getBestMeals();
+    $bestMeals = Meal::getBestMeals($user['id']);
 
 
 ?><!DOCTYPE html>
@@ -81,7 +81,7 @@
     <div class="best-meals content-line">
         <h3 class="red">Beste gerechten</h3>
         <div class="profile-meals">
-            <?php foreach($bestMeals as $bestMeal): ?>
+            <?php if($bestMeals !== null): foreach($bestMeals as $bestMeal): ?>
                 <div class="profile-meal">
                     <img class="meal-image" src="images/<?php echo $bestMeal['image'] ?>" alt="<?php echo $bestMeal['name'] ?>">
                     <div class="meal-content">
@@ -98,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php endforeach; else: echo "Nog geen beste gerechten."; endif;?>
         </div>
     </div>
     <div class="own-meals content-line">
@@ -128,7 +128,7 @@
                 </div>
             <?php endforeach; ?>
         </div>
-        <a href="meals.php" class="red profile-more centered">Meer gerechten<img class="profile-more-icon" src="icons/Icon-arrow-red.svg" alt="arrow-icon"></a>
+        <a href="meals.php" id="more-meals" class="red profile-more centered">Meer gerechten<img class="profile-more-icon" src="icons/Icon-arrow-red.svg" alt="arrow-icon"></a>
     </div>
     <div class="reviews">
         <h3 class="red review-title">Reviews</h3>
