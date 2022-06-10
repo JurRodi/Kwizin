@@ -3,6 +3,11 @@
     include_once(__DIR__ . "/bootstrap.php");
     Security::onlyLoggedInUsers();
 
+    // $vis_ip = Location::getVisIpAddr();
+    // $ipdat = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $vis_ip));
+    // echo 'Latitude: ' . $ipdat->geoplugin_latitude . "\n";
+    // echo 'Longitude: ' . $ipdat->geoplugin_longitude . "\n";
+
     $user = User::getByEmail($_SESSION['email']);
     $suggestedMeals = Meal::getAll($user['id']);
     $cultures = Culture::getAll();
@@ -106,7 +111,6 @@
         </div>
     <?php endforeach; endif; ?>
     <div class="whiteSpace"></div>
-    <script src="scripts/feedSlider.js"></script>
     <script src="scripts/liveSearch.js"></script>
 </body>
 </html>
