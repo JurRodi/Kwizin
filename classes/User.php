@@ -225,6 +225,14 @@
                 return $stmt->fetch();
         }
 
+        public static function getByName($firstname){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("SELECT * FROM users WHERE firstname = :firstname");
+                $stmt->bindValue(":firstname", $firstname);
+                $stmt->execute();
+                return $stmt->fetch();
+        }
+
         public static function getAllMeals($id){
                 $conn = Db::getConnection();
                 $stmt = $conn->prepare("SELECT * FROM meals WHERE user_id = :id");

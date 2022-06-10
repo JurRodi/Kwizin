@@ -5,7 +5,7 @@
 
     $meal = Meal::getById($_GET['id']);
     $host = Meal::getUserById($meal['user_id']);
-    $ingredients = [];
+    $ingredients = Ingredient::getIngredientByMealId($meal['id']);
 
     $datetime = new DateTime($meal['meetingTime']);
     $date = $datetime->format('d-m-Y');
@@ -39,12 +39,11 @@
                 <a href=""><img class="icon" src="icons/Icon-share.png" alt="share-button"></a>
             </div>
             <div><img class="detail-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
-            <div class="meal-avatar"><img class="avatar big" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>"></div>
+            <a href="profile.php?u=<?php echo $host['firstname'] ?>"><div class="meal-avatar"><img class="avatar big" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>"></div></a>
             <div class="content">
                 <h2><?php echo $meal['name'] ?></h2>
-                <p><?php echo $culture['name'] . " keuken" ?></p>
-                <p><?php echo $host['firstname'] ?></p>
-                <p><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
+                <p class="culture"><?php echo $culture['name'] . " keuken" ?></p>
+                <p class="location"><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
                 <p class="red"><?php echo $date . " om " . $time ?></p> 
                 <ul class=" guestsList guestsList-meal">
                     <?php foreach($guests as $guest): ?>
@@ -57,13 +56,14 @@
             <p><?php echo $meal['description'] ?></p>
             <ul>
                 <?php foreach($ingredients as $ingredient): ?>
-                    <li><?php echo $ingredient['name'] ?></li>
+                    <li><?php echo $ingredient['amount'] . " " . $ingredient['name'] ?></li>
                 <?php endforeach; ?>
             </ul>
-            <?php if($guests === []): ?>
-                <div class="centered bottom" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
-            <?php endif; ?>
+            <?php //if($guests === []): ?>
+                <div class="centered" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
+            <?php //endif; ?>
         </div>
+        <div class="whiteSpace"></div>
     </div>
     <div class="pop-up">
         <h2 class="centered">Je bent ingeschreven bij <?php echo $host['firstname'] ?></h2>

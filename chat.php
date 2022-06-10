@@ -6,10 +6,6 @@
     $user = User::getByEmail($_SESSION['email']);
     $connected = User::getChatUser($_SESSION['reconnect'][$_GET['u']], $user['id']);
 
-    // if(isset($_POST['message'])){
-    //     Message::addMessage($connected['id'], $user['id'], $_POST['message']);
-    // }
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,16 +16,16 @@
     <link rel="stylesheet" href="styling/style.css">
 </head>
 <body>
-    <div class="floating-icons floating-icons-chat">
+    <div class="floating-icons">
         <a href="reconnect.php"><img class="icon" src="icons/Icon-arrow-black.svg" alt="arrow-button"></a>
-        <div>
-            <a href="#" class=""><img class="chat-reconnect" src="icons/Icon-euro.svg" alt="euro-icon"></a>
-            <a href="#" class=""><img class="chat-reconnect" src="icons/Icon-reconnect.png" alt="reconnect-icon"></a>
-        </div>
+    </div>
+    <div class="floating-icons right">
+        <a href="#" class=""><img class="chat-reconnect" src="icons/Icon-euro.svg" alt="euro-icon"></a>
+        <a href="#" class=""><img class="chat-reconnect" src="icons/Icon-reconnect.png" alt="reconnect-icon"></a>
     </div>
     <div class="reconnect-details">
-        <div class="chat-avatar"><img class="avatar medium" src="images/<?php echo $connected['avatar'] ?>" alt="<?php echo $connected['firstname'] ?>"></div>
-        <h3 class="red chat-username"><?php echo $connected['firstname'] ?></h3>
+        <div class="chat-avatar"><a href="profile.php?u=<?php echo $connected['firstname'] ?>"><img class="avatar medium" src="images/<?php echo $connected['avatar'] ?>" alt="<?php echo $connected['firstname'] ?>"></a></div>
+        <div class="chat-username-container"><a href="profile.php?u=<?php echo $connected['firstname'] ?>"><h3 class="red chat-username"><?php echo $connected['firstname'] ?></h3></a></div>
         <p><?php //echo $online ?></p>
     </div>
     <div class="chat-messages">
@@ -39,7 +35,6 @@
                     <div class="chat-message-right-text">
                         <p><?php echo $message['message'] ?></p>
                     </div>
-                    <div class="chat-message-right-avatar"><img class="avatar small" src="images/<?php echo $user['avatar'] ?>" alt="<?php echo $user['firstname'] ?>"></div>
                 </div>
             <?php else: ?>
                 <div class="chat-message-left">

@@ -199,6 +199,11 @@ h2{
     height: 100px;
 }
 
+.very-big{
+    width: 150px;
+    height: 150px;
+}
+
 .big{
     width: 100px;
     height: 100px;
@@ -281,8 +286,12 @@ h2{
     margin-right: 20px;
 }
 
+.chat-username-container{
+    padding-top: 10px;
+}
+
 .chat-username{
-    margin-top: 10px;
+    margin: 0 0 0 0;
 }
 
 .chat-reconnect{
@@ -354,20 +363,13 @@ h2{
     position: absolute;
     top: 30px;
     margin-left: 4%;
+    z-index: 1;
 }
 
 .floating-icons-meal{
     width: 92%;
     display: flex;
     justify-content: space-between;
-}
-
-.floating-icons-chat{
-    width: 92%;
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
-    z-index: 1;
 }
 
 .icon{
@@ -768,11 +770,12 @@ h2{
 }
 
 .chat-message-right-text{
-    margin-right: 10px;
+    margin: 0 10px 0 10px;
+    color: #FDFFF5;
 }
 
 .chat-message-left-text{
-    margin-left: 10px;
+    margin: 0 10px 0 10px;
 }
 
 .filter-form{
@@ -782,4 +785,16 @@ h2{
 .filter-item{
     padding: 30px 8% 60px 8%;
     border-bottom: dashed 4px #E4E4E4;
+}
+
+.review-top{
+    display: flex;
+    flex-direction: column;
+    margin-left: 7%;
+    padding: 30px 0 20px 0;
+    border-bottom: #040301 solid 1px;
+}
+
+.review-title{
+    
 }
