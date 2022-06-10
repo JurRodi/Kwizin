@@ -133,14 +133,6 @@
             return $stmt->fetchAll();
         }
 
-        public static function getAllMealsByUser($user_id){
-                $conn = Db::getConnection();
-                $stmt = $conn->prepare("SELECT * FROM meals WHERE user_id = :user_id");
-                $stmt->bindValue(":user_id", $user_id);
-                $stmt->execute();
-                return $stmt->fetchAll();
-            }
-
         public static function getById($id){
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM meals WHERE id = :id");
