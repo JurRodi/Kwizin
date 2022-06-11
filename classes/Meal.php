@@ -165,9 +165,9 @@
                 return $stmt->fetch()[0];
         }
 
-        public static function addMeal($user_id, $culture_id, $name, $description, $price, $location, $meetingTime){
+        public static function addMeal($user_id, $culture_id, $name, $description, $price, $location, $meetingTime, $max_guests){
                 $conn = Db::getConnection();
-                $stmt = $conn->prepare("INSERT INTO meals (user_id, culture_id, name, description, price, location, meetingTime) VALUES (:user_id, :culture_id, :name, :description, :price, :location, :meetingTime)");
+                $stmt = $conn->prepare("INSERT INTO meals (user_id, culture_id, name, description, price, location, meetingTime, max_guests) VALUES (:user_id, :culture_id, :name, :description, :price, :location, :meetingTime, :max_guests)");
                 $stmt->bindValue(":user_id", $user_id);
                 $stmt->bindValue(":culture_id", $culture_id);
                 $stmt->bindValue(":name", $name);
@@ -175,6 +175,7 @@
                 $stmt->bindValue(":price", $price);
                 $stmt->bindValue(":location", $location);
                 $stmt->bindValue(":meetingTime", $meetingTime);
+                $stmt->bindValue(":max_guests", $max_guests);
                 $stmt->execute();
                 return $conn->lastInsertId();
         }
