@@ -1,17 +1,20 @@
 document.querySelector('#search-meal').addEventListener('keyup', function(e){ 
     let search = document.querySelector('#search-meal').value;
-    suggestions(search);
+    suggestions(search, e);
 });
 
-function suggestions(str){
+function suggestions(str, e){
     if (str.length==0) {
         let suggestions = document.getElementById("search-meal-suggestions");
         suggestions.innerHTML="";
         suggestions.style.border="0px";
         return;
     }
+    let user_id = e.target.dataset.user_id;
+
     let formData = new FormData();
     formData.append('name', str);
+    formData.append('user_id', user_id);
 
     fetch('ajax/liveSearch.php', {
         method: 'POST',

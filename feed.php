@@ -57,7 +57,7 @@
     <div class="content">
         <a class="filter" href="filter.php">Filteren</a>
         <form class="search-form" method="GET">
-            <input type="text" id="search-meal" class="search" name="s" autocomplete="off">
+            <input type="text" id="search-meal" class="search" name="s" autocomplete="off" data-user_id="<?php echo $user['id'] ?>">
             <div id="search-meal-suggestions"></div>
         </form>
     </div>
@@ -69,7 +69,7 @@
         <?php foreach($suggestedMeals as $meal): $host = Meal::getUserById($meal['user_id']); ?>
             <div class="meal">
                 <a href="meal.php?id=<?php echo $meal['id'] ?>">
-                    <img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
+                    <div class="feed-image-container"><img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
                     <div class="feed-details">
                         <img class="avatar avatar-feed" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
                         <div>
@@ -93,7 +93,7 @@
             <?php foreach(Meal::getMealsByCulture($culture['id'], $user['id']) as $meal): $host = Meal::getUserById($meal['user_id']); ?>
                 <div class="meal">        
                     <a href="meal.php?id=<?php echo $meal['id'] ?>">
-                        <img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
+                    <div class="feed-image-container"><img class="feed-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
                         <div class="feed-details">
                             <img class="avatar avatar-feed" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>">
                             <div>

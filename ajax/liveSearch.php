@@ -3,7 +3,7 @@
     include_once(__DIR__ . "/../bootstrap.php");	
 
     if(!empty($_POST)){
-        $meal = Meal::searchMealByName($_POST['name']);
+        $meal = Meal::searchMealByName($_POST['name'], $_POST['user_id']);
 
         $response = [
             'status' => 'succes',
