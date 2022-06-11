@@ -105,7 +105,7 @@
     <div class="own-meals content-line">
         <div class="profile-heading">
             <h3 class="red">Gerechten</h3>
-            <?php if(isset($ownprofile)): ?>
+            <?php if(isset($ownProfile)): ?>
                 <a href="uploadMeal.php"><img src="icons/Icon-add.svg" alt="add-icon"></a>
             <?php endif; ?>
         </div>

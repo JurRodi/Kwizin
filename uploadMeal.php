@@ -7,8 +7,12 @@
     $cultures = Culture::getAll();
 
     if(isset($_POST['mealUpload'])){
-        $meal_id = Meal::addMeal($user['id'], $_POST['culture'], $_POST['name'], $_POST['description'], $_POST['price'], $_POST['location'], $_POST['meetingTime']);
+        $meal_id = Meal::addMeal($user['id'], $_POST['culture'], $_POST['name'], $_POST['description'], $_POST['price'], $_POST['location'], $_POST['meetingTime'], $_POST['max-guests']);
         Image::upload($meal_id, $user['id']);
+        $ingredients = json_decode($_POST['ingredient']);
+        foreach($ingredients as $ingredient){
+            Ingredient::addIngredient($ingredient, $meal_id);
+        }
         header("Location: profile.php");
     }
 
@@ -32,6 +36,7 @@
     <form action="" method="POST" enctype="multipart/form-data" class="content meal-form">
         <label for="name" class="red"><h3>Naam gerecht</h3></label>
         <input type="text" name="name" id="name" class="form-input" required>
+
         <label for="culture" class="red"><h3>Cultuur</h3></label>
         <select name="culture" id="culture" class="form-input">
             <option value="">Kies een cultuur</option>
@@ -39,25 +44,39 @@
                 <option value="<?php echo $culture['id'] ?>"><?php echo $culture['name'] . " cultuur" ?></option>
             <?php endforeach; ?>
         </select>
+
         <label for="description" class="red"><h3>Beschrijving</h3></label>
         <textarea name="description" id="description" class="form-input form-text" cols="30" rows="10" required></textarea>
+
         <label for="ingredients" class="red"><h3>Ingrediënten</h3></label>
-        <input type="text" name="ingredients" id="ingredients" class="form-input" required>
-        <label for="price" class="red"><h3>Prijs</h3></label>
-        <div class="slideContainer">
-            <input type="range" name="price" id="price" min="0" max="150" value="10" class="form-input" required>
-            <output for="price" id="price-output"></output>
+        <div class="add-ingredients">
+            <input type="text" name="ingredient" id="ingredient" class="form-input" value="">
+            <a href="" class="add-ingredient"><img id="add-ingredient-btn" src="icons/Icon-add.svg" alt="add-icon"></a>
         </div>
+
+        <div id="ingredient-list"></div>
+        <label for="price" class="red"><h3>Prijs <output for="price" id="price-output" class="slider-output"></output></h3></label>
+        <div class="slideContainer">
+            <input type="range" name="price" id="price" min="0" max="150" value="10" class="form-input slider" required>
+        </div>
+
         <label for="image" class="red"><h3>Afbeelding</h3></label>
         <input type="file" name="image" id="image" required>
+
         <label for="location" class="red"><h3>Locatie</h3></label>
         <input type="text" name="location" id="location" class="form-input" required>
+
+        <label for="max-guests" class="red"><h3>Aantal personen</h3></label>
+        <input type="number" name="max-guests" id="max-guests" class="form-input" step="1" min="0" max="99" required>
+
         <label for="meetingTime" class="red"><h3>Datum en tijdstip</h3></label>
         <input type="datetime-local" name="meetingTime" id="meetingTime" class="form-input" required>
-        <div class="centered form-button-align"><input type="submit" name="mealUpload" value="Voeg gerecht toe" class="button form-button"></div>
+        
+        <div class="centered form-button-align"><input type="submit" name="mealUpload" value="Voeg gerecht toe" id="mealUpload" class="button form-button"></div>
     </form>
     <div class="whiteSpace"></div>
 
-    <script src="scripts/addMealSlider.js"></script>
+    <script src="scripts/slider.js"></script>
+    <script src="scripts/addIngredient.js"></script>
 </body>
 </html>
