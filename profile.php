@@ -4,17 +4,16 @@
     Security::onlyLoggedInUsers();
 
     if(isset($_GET['u'])){
-        $user = User::getByName($_GET['u']);
+        $user = User::getByName($_GET['u']);   
     }
     else{
         $user = User::getByEmail($_SESSION['email']);
-        $ownprofile = true;
+        $ownProfile = true;
     }
     $meals = Meal::getMealsByUser($user['id']);
     $favorites = User::getFavorits($user['id']);
     $reviews = Review::getReviewsByUser($user['id']);
     $bestMeals = Meal::getBestMeals($user['id']);
-
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -28,7 +27,7 @@
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
 
-    <?php if(isset($ownprofile)): ?>
+    <?php if(isset($ownProfile)): ?>
         <div class="floating-icons right">
             <a href="logout.php"><img class="icon" src="icons/Icon-menu.svg" alt="arrow-button"></a>
         </div>
@@ -59,7 +58,7 @@
                 <?php endfor; ?>
             </div>
         </div>
-        <?php if(isset($ownprofile)): ?>
+        <?php if(isset($ownProfile)): ?>
             <div class="centered"><a class="button" id="edit-profile" href="">Profiel bewerken</a></div>
         <?php endif; ?>
         <p class="bio"><?php echo $user['bio'] ?></p>
@@ -159,7 +158,9 @@
             <?php endforeach; ?>
         </div>
         <a href="reviews.php" class="red profile-more centered">Meer reviews<img class="profile-more-icon" src="icons/Icon-arrow-red.svg" alt="arrow-icon"></a>
-        <a href="review.php?u=<?php if(isset($_GET['u'])){echo $_GET['u'];} ?>" ><div class="centered form-button-align"><input type="submit" name="review" value="Review toevoegen" id="review" class="button form-button"></div></a>
+        <?php if(!isset($ownProfile)): ?>
+            <div class="centered form-button-align"><a href="review.php?u=<?php if(isset($_GET['u'])){echo $_GET['u'];} ?>"><input type="submit" name="review" value="Review toevoegen" id="review" class="button form-button"></a></div>
+        <?php endif; ?>
     </div>
     <div class="whiteSpace"></div>
 </body>
