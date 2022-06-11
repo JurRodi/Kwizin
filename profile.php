@@ -159,7 +159,7 @@
             <?php endforeach; ?>
         </div>
         <a href="reviews.php" class="red profile-more centered">Meer reviews<img class="profile-more-icon" src="icons/Icon-arrow-red.svg" alt="arrow-icon"></a>
-        <a href="review.php?u=<?php echo $_GET['u'] ?>" ><div class="centered form-button-align"><input type="submit" name="review" value="Review toevoegen" id="review" class="button form-button"></div></a>
+        <a href="review.php?u=<?php if(isset($_GET['u'])){echo $_GET['u'];} ?>" ><div class="centered form-button-align"><input type="submit" name="review" value="Review toevoegen" id="review" class="button form-button"></div></a>
     </div>
     <div class="whiteSpace"></div>
 </body>
