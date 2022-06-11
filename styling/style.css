@@ -141,7 +141,7 @@ h2{
 
 .search{
     width: 93%;
-    padding-left: 3%;
+    padding-left: 30px;
     height: 40px;
     background-color: #E4E4E4;
     border: none;
@@ -153,7 +153,7 @@ h2{
 }
 
 #search-meal-suggestions{
-    padding-left: 3%;
+    padding-left: 30px;
     width: 93%;
     background-color: #E4E4E4;
     border-radius: 0 0 10px 10px;
@@ -350,11 +350,47 @@ h2{
     color: #A91B0D;
 }
 
-.detail-image{
+.detail-img-container{
     width: 100%;
     height: 300px;
     margin-top: -20px;
     background-position: center;
+    display: flex;
+    justify-content: center;
+    background-color: #E4E4E4;
+}
+
+.detail-img{
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+#details{
+    max-width: 750px;
+}
+
+.meal-container{
+    display: flex;
+    justify-content: center;
+}
+
+.meal-details-container{
+    width: 84%;
+    max-width: 650px;
+    margin: 0 7% 50px 7%;
+}
+
+.meal-details-container1{
+    justify-self: flex-end;
+    margin-left: -7%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: -50px;
+    margin-right: 7%;
 }
 
 .meal-details{
@@ -384,14 +420,18 @@ h2{
     height: 30px;
 }
 
+.meal-icon{
+    filter:drop-shadow(3px 3px 5px #040301)
+}
+
 .right{
     right: 4%;
 }
 
 .meal-avatar{
-    position: absolute;
-    top: 275px;
-    right: 10%;
+    /* position: absolute; */
+    /* top: 275px; */
+    /* right: 10%; */
 }
 
 #edit-profile{
@@ -512,9 +552,9 @@ h2{
 }
 
 .price{
-    position: absolute;
+    /* position: absolute; */
     top: 400px;
-    right: 10%;
+    /* right: 10%; */
     font-size: 20px;
 }
 
@@ -531,9 +571,9 @@ h2{
 }
 
 .guestsList-meal{
-    position: absolute;
-    top: 440px;
-    right: 10%;
+    /* position: absolute; */
+    /* top: 440px; */
+    /* right: 10%; */
 }
 
 .max-guests{
@@ -982,4 +1022,23 @@ h2{
     align-items: flex-end;
     margin-bottom: 30px;
     padding-right: 15px;
+}
+
+@media (min-width: 768px) {
+    .detail-img-container{
+        height: 400px;
+    }
+    .detail-img{
+        max-height: 400px;
+        max-width: 800px;
+    }
+    .meal-avatar{
+        top: 375px;
+    }
+    .price{
+        top: 500px;
+    }
+    .guestsList-meal{
+        top: 540px;
+    }
 }

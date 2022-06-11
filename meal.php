@@ -35,35 +35,41 @@
         <?php $culture = Culture::getById($meal['culture_id']) ?>
         <div class="meal-details">
             <div class="floating-icons floating-icons-meal">
-                <a href="feed.php"><img class="icon" src="icons/Icon-arrow.png" alt="arrow-button"></a>
-                <a href=""><img class="icon" src="icons/Icon-share.png" alt="share-button"></a>
+                <a href="feed.php"><img class="icon meal-icon" src="icons/Icon-arrow.png" alt="arrow-button"></a>
+                <a href=""><img class="icon meal-icon" src="icons/Icon-share.png" alt="share-button"></a>
             </div>
-            <div><img class="detail-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
-            <a href="profile.php?u=<?php echo $host['firstname'] ?>"><div class="meal-avatar"><img class="avatar big" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>"></div></a>
-            <div class="content">
-                <h2><?php echo $meal['name'] ?></h2>
-                <p class="culture"><?php echo $culture['name'] . " keuken" ?></p>
-                <p class="location"><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
-                <p class="red"><?php echo $date . " om " . $time ?></p> 
-                <p class="red price"><?php if($meal['price'] > 0){echo "€ " . $meal['price'];} else{echo "Gratis";} ?></p>
-                <ul class="guestsList guestsList-meal">
-                    <?php foreach($guests as $guest): ?>
-                        <li class="guestItem"><img class="avatar small" src="images/<?php echo $guest['avatar'] ?>" alt="<?php echo $guest['firstname'] ?>"></li>
-                    <?php endforeach; ?>
-                    <p class="max-guests red"><?php echo "/" . $meal['max_guests'] ?></p>
-                </ul>
-            </div> 
+            <div class="detail-img-container"><img class="detail-img" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
+            <div class="meal-container">
+                <div class="meal-details-container">
+                    <h2><?php echo $meal['name'] ?></h2>
+                    <p class="culture"><?php echo $culture['name'] . " keuken" ?></p>
+                    <p class="location"><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
+                    <p class="red"><?php echo $date . " om " . $time ?></p> 
+                </div> 
+                <div class="meal-details-container1">
+                    <a href="profile.php?u=<?php echo $host['firstname'] ?>"><div class="meal-avatar"><img class="avatar big" src="images/<?php echo $host['avatar'] ?>" alt="<?php echo $host['firstname'] ?>"></div></a>
+                    <p class="red price"><?php if($meal['price'] > 0){echo "€ " . $meal['price'];} else{echo "Gratis";} ?></p>
+                    <ul class="guestsList guestsList-meal">
+                        <?php foreach($guests as $guest): ?>
+                            <li class="guestItem"><img class="avatar small" src="images/<?php echo $guest['avatar'] ?>" alt="<?php echo $guest['firstname'] ?>"></li>
+                        <?php endforeach; ?>
+                        <p class="max-guests red"><?php echo "/" . $meal['max_guests'] ?></p>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="content">
-            <p><?php echo $meal['description'] ?></p>
-            <ul>
-                <?php foreach($ingredients as $ingredient): ?>
-                    <li><?php echo $ingredient['amount'] . " " . $ingredient['name'] ?></li>
-                <?php endforeach; ?>
-            </ul>
-            <?php if(count($guests) !== $meal['max_guests'] ): ?>
-                <div class="centered" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
-            <?php endif; ?>
+        <div class="meal-container">
+            <div id="details" class="meal-details-container">
+                <p><?php echo $meal['description'] ?></p>
+                <ul>
+                    <?php foreach($ingredients as $ingredient): ?>
+                        <li><?php echo $ingredient['amount'] . " " . $ingredient['name'] ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php if(count($guests) !== $meal['max_guests'] ): ?>
+                    <div class="centered" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
+                <?php endif; ?>
+            </div>
         </div>
         <div class="whiteSpace"></div>
     </div>
