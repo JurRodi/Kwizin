@@ -2,9 +2,11 @@
 
     include_once(__DIR__ . "/bootstrap.php");
     Security::onlyLoggedInUsers();
+    $_SESSION['acces-payment'] = true;
 
     $user = User::getByEmail($_SESSION['email']);
     $connected = User::getChatUser($_SESSION['reconnect'][$_GET['u']], $user['id']);
+    $_SESSION['host'] = $connected['id'];
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -20,7 +22,7 @@
         <a href="reconnect.php"><img class="icon" src="icons/Icon-arrow-black.svg" alt="arrow-button"></a>
     </div>
     <div class="floating-icons right">
-        <a href="#" class=""><img class="chat-reconnect" src="icons/Icon-euro.svg" alt="euro-icon"></a>
+        <a href="payment.php" class=""><img class="chat-reconnect" src="icons/Icon-euro.svg" alt="euro-icon"></a>
         <a href="#" class=""><img class="chat-reconnect" src="icons/Icon-reconnect.png" alt="reconnect-icon"></a>
     </div>
     <div class="reconnect-details">

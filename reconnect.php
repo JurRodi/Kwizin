@@ -2,6 +2,7 @@
 
     include_once(__DIR__."/bootstrap.php");
     Security::onlyLoggedInUsers();
+    $_SESSION['acces-payment'] = false;
 
     $user = User::getByEmail($_SESSION['email']);
     $connectedUsers = User::getAllPrevConnected($user['id']);
@@ -26,7 +27,7 @@
         <div class="centered"><a class="button" href="">Eetverzoeken</a></div>
     </div>
     <div class="">
-        <?php foreach($connectedUsers as $connectedUser): $token = md5($connectedUser['firstname'].rand(10,9999)); $reconnect_ids[$token] = $connectedUser['id']; $_SESSION['reconnect'] = $reconnect_ids; //var_dump($reconnect_ids); ?> 
+        <?php foreach($connectedUsers as $connectedUser): $token = md5($connectedUser['firstname'].rand(10,9999)); $reconnect_ids[$token] = $connectedUser['id']; $_SESSION['reconnect'] = $reconnect_ids; ?> 
             <a href="chat.php?u=<?php echo $token ?>" class="chat">
                 <img class="avatar reconnect-avatar" src="images/<?php echo $connectedUser['avatar'] ?>" alt="<?php echo $connectedUser['firstname'] ?>">
                 <div class="chat-details">
