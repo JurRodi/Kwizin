@@ -141,19 +141,19 @@ h2{
 
 .search{
     width: 93%;
-    padding-left: 30px;
+    padding-left: 40px;
     height: 40px;
     background-color: #E4E4E4;
     border: none;
     border-radius: 10px;
     background-image: url("../icons/Icon-search.png");
     background-repeat: no-repeat;
-    background-position: 1% 50%;
+    background-position: 10px 50%;
     font-size: 20px; 
 }
 
 #search-meal-suggestions{
-    padding-left: 30px;
+    padding-left: 40px;
     width: 93%;
     background-color: #E4E4E4;
     border-radius: 0 0 10px 10px;
@@ -263,6 +263,12 @@ h2{
 .form-text{
     height: 160px;
     resize: none;
+}
+
+.chats{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
 }
 
 .chat{
@@ -1031,14 +1037,5 @@ h2{
     .detail-img{
         max-height: 400px;
         max-width: 800px;
-    }
-    .meal-avatar{
-        top: 375px;
-    }
-    .price{
-        top: 500px;
-    }
-    .guestsList-meal{
-        top: 540px;
     }
 }
