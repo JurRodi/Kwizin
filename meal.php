@@ -45,7 +45,7 @@
                 <p class="culture"><?php echo $culture['name'] . " keuken" ?></p>
                 <p class="location"><img src="icons/Icon-map-pin.svg" alt="pin-icon"><?php echo " " . $meal['location'] ?></p>
                 <p class="red"><?php echo $date . " om " . $time ?></p> 
-                <p class="red price"><?php echo "€ " . $meal['price'] ?></p>
+                <p class="red price"><?php if($meal['price'] > 0){echo "€ " . $meal['price'];} else{echo "Gratis";} ?></p>
                 <ul class="guestsList guestsList-meal">
                     <?php foreach($guests as $guest): ?>
                         <li class="guestItem"><img class="avatar small" src="images/<?php echo $guest['avatar'] ?>" alt="<?php echo $guest['firstname'] ?>"></li>
@@ -61,9 +61,9 @@
                     <li><?php echo $ingredient['amount'] . " " . $ingredient['name'] ?></li>
                 <?php endforeach; ?>
             </ul>
-            <?php //if($guests === []): ?>
+            <?php if(count($guests) !== $meal['max_guests'] ): ?>
                 <div class="centered" id="signUp-button"><a class="button" id="signUp-meal" href="#">Inschrijven</a></div>
-            <?php //endif; ?>
+            <?php endif; ?>
         </div>
         <div class="whiteSpace"></div>
     </div>
