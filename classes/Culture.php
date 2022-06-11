@@ -48,4 +48,12 @@
             }
             return $stmt->fetch(PDO::FETCH_ASSOC)["id"];
         }
+
+        public static function searchByName($name){
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM cultures WHERE name LIKE :name");
+            $stmt->bindValue(":name", $name . "%");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
     }
