@@ -26,7 +26,7 @@
         </form>
         <div class="centered"><a class="button" href="">Eetverzoeken</a></div>
     </div>
-    <div class="">
+    <div class="chats">
         <?php foreach($connectedUsers as $connectedUser): $token = md5($connectedUser['firstname'].rand(10,9999)); $reconnect_ids[$token] = $connectedUser['id']; $_SESSION['reconnect'] = $reconnect_ids; ?> 
             <a href="chat.php?u=<?php echo $token ?>" class="chat">
                 <img class="avatar reconnect-avatar" src="images/<?php echo $connectedUser['avatar'] ?>" alt="<?php echo $connectedUser['firstname'] ?>">
