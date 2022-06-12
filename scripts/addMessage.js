@@ -36,7 +36,7 @@ function add(str, e){
 }
 
 function addMessage(result){
-    let html = '<div class="chat-message-right-text"><p>'+result.body.message+'</p></div><div class="chat-message-right-avatar"><img class="avatar small" src="images/'+result.userAvatar+'" alt="'+result.userFirstname+'"></div>';
+    let html = '<div class="chat-message-right-text"><p>'+result.body.message+'</p></div>';
     let chat = document.querySelector(".chat-messages");
     let div = document.createElement("div");
     div.classList.add("chat-message-right");
