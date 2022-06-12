@@ -86,7 +86,7 @@
         </div>
         <?php endif; ?>
     </div>
-    <?php if($view === 'standard' || $view === 'no-suggestions'): foreach($cultures as $culture): ?>
+    <?php if($view === 'standard' || $view === 'no-suggestions'): foreach($cultures as $culture): if(count(Meal::getMealsByCulture($culture['id'], $user['id'])) > 0): ?>
         <div class="content">
             <h2><?php echo $culture['name'] . " keuken" ?></h2>
             <div class="slide-bar">
@@ -109,7 +109,7 @@
             <?php endforeach; ?>
             </div>
         </div>
-    <?php endforeach; endif; ?>
+    <?php endif; endforeach; endif; ?>
     <div class="whiteSpace"></div>
     <script src="scripts/liveSearch.js"></script>
 </body>
