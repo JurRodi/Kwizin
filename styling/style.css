@@ -1108,6 +1108,14 @@ h2{
     margin-top: 0;
 }
 
+.pref-text{
+    max-width: 300px;
+}
+
+.pref{
+    margin-bottom: 10px;
+}
+
 @media (min-width: 768px) {
     .detail-img-container{
         height: 400px;

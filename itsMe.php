@@ -1,7 +1,7 @@
 <?php 
 
     include_once(__DIR__. "/bootstrap.php");
-    // Security::onlyLoggedInUsers();
+    Security::onlyLoggedInUsers();
 
 ?><!DOCTYPE html>
 <html lang="en">
