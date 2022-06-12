@@ -1069,7 +1069,7 @@ h2{
     padding-right: 15px;
 }
 
-.itsMe{
+.register{
     height: 500px;
     max-height: 500px;
     display: flex;
@@ -1114,6 +1114,19 @@ h2{
 
 .pref{
     margin-bottom: 10px;
+}
+
+#culture-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 300px;
+    margin-top: 50px;
+}
+
+.culture-form{
+    width: 100%;
 }
 
 @media (min-width: 768px) {

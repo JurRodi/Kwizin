@@ -2,6 +2,13 @@
 
     include_once(__DIR__. "/bootstrap.php");
     Security::onlyLoggedInUsers();
+    if($_SESSION['next-reg-step'] == false){
+        header("Location: feed.php");
+        die();
+    }
+    else{
+        $_SESSION['next-reg-step'] = true;
+    }
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -14,7 +21,7 @@
 </head>
 <body>
 
-    <div class="welcome itsMe">
+    <div class="welcome register">
         <div class="IM-header">
             <img class="welcome-logo" src="images/Kwizin_logo.png" alt="Kwizin-logo">
 

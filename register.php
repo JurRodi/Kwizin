@@ -13,6 +13,7 @@
             
             session_start();
             $_SESSION['email'] = $user->getEmail();
+            $_SESSION['next-reg-step'] = true;
             header("Location: itsMe.php");
         }
         catch(Throwable $error) {
