@@ -118,26 +118,6 @@
         }
 
         /**
-         * Get the value of culture
-         */ 
-        public function getCulture()
-        {
-                return $this->culture;
-        }
-
-        /**
-         * Set the value of culture
-         *
-         * @return  self
-         */ 
-        public function setCulture($culture)
-        {
-                $this->culture = $culture;
-
-                return $this;
-        }
-
-        /**
          * Get the value of avatar
          */ 
         public function getAvatar()
@@ -265,6 +245,14 @@
                 return $stmt->fetchAll();
         }
 
+        public static function setFavoriteCultures($user_id, $culture){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("INSERT INTO favorites (user_id, culture) VALUES (:user_id, :culture)");
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->bindValue(":culture", $culture);
+                $stmt->execute();
+        }
+
         public static function getChatUser($reconnect_id, $user_id){
                 $conn = Db::getConnection();
                 $stmt = $conn->prepare("SELECT * FROM users WHERE id IN (SELECT reconnect_id FROM connections WHERE reconnect_id = :reconnect_id AND user_id = :user_id)");
@@ -272,6 +260,14 @@
                 $stmt->bindValue(":user_id", $user_id);
                 $stmt->execute();
                 return $stmt->fetch();
+        }
+
+        public static function setCulture($user_id, $culture){
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("UPDATE users SET culture = :culture WHERE id = :user_id");
+                $stmt->bindValue(":culture", $culture);
+                $stmt->bindValue(":user_id", $user_id);
+                $stmt->execute();
         }
     }
 ?>
