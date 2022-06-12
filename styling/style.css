@@ -242,6 +242,15 @@ h2{
     padding-top: 16px;
 }
 
+.form-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 30px 8% 60px 8%;
+    border-bottom: dashed 4px #E4E4E4;
+}
+
 .form-button{
     padding-top: 0;
     border: none;
@@ -254,6 +263,7 @@ h2{
 
 .form-input{
     width: 100%;
+    max-width: 600px;
     height: 40px;
     font-size: 16px;
     border: 1px solid;
@@ -458,7 +468,7 @@ h2{
 }
 
 .meal-form{
-    width: 86%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -802,8 +812,7 @@ h2{
 }
 
 .add-ingredient{
-    margin-right: 15px;
-    margin-top: 5px;
+    margin: 5px 15px 0 10px;
 }
 
 #ingredient{
@@ -881,8 +890,8 @@ h2{
 }
 
 .filter-item{
-    padding: 30px 8% 60px 8%;
-    border-bottom: dashed 4px #E4E4E4;
+    width: 100%;
+    max-width: 700px;
 }
 
 .review-top{
