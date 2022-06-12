@@ -61,7 +61,7 @@
         <?php if(isset($ownProfile)): ?>
             <div class="centered"><a class="button" id="edit-profile" href="">Profiel bewerken</a></div>
         <?php endif; ?>
-        <p class="bio"><?php echo $user['bio'] ?></p>
+        <div class="bio-container"><p class="bio"><?php echo $user['bio'] ?></p></div>
     </div>
     <div class="content-line extraProfile">
         <div class="favoriteMeals">
@@ -84,16 +84,16 @@
         <div class="profile-meals">
             <?php if($bestMeals !== null): foreach($bestMeals as $bestMeal): ?>
                 <div class="profile-meal">
-                    <img class="meal-image" src="images/<?php echo $bestMeal['image'] ?>" alt="<?php echo $bestMeal['name'] ?>">
+                <div class="meal-img-container"><img class="meal-image" src="images/<?php echo $bestMeal['image'] ?>" alt="<?php echo $bestMeal['name'] ?>"></div>
                     <div class="meal-content">
                         <h4 class="profile-meal-title red"><?php echo $bestMeal['name'] ?></h4>
                         <?php $rating = Meal::calculateMealRating($bestMeal['id']) ?>
                         <div class="rating">
                             <?php for($i = 5; $i > 0; $i--): ?>   
                                 <?php if($rating > 0): ?>
-                                    <div><img class="profile-icon" src="icons/Icon-star.svg" alt="star-icon"></div>
+                                    <div><img class="review-icon" src="icons/Icon-star.svg" alt="star-icon"></div>
                                 <?php else: ?>
-                                    <div><img class="profile-icon" src="icons/Icon-star-grey.svg" alt="star-icon"></div>
+                                    <div><img class="review-icon" src="icons/Icon-star-grey.svg" alt="star-icon"></div>
                                 <?php endif; $rating--?>
                             <?php endfor; ?>
                         </div>
@@ -112,16 +112,16 @@
         <div class="profile-meals">
             <?php foreach($meals as $meal): ?>
                 <div class="profile-meal">
-                    <img class="meal-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>">
+                    <div class="meal-img-container"><img class="meal-image" src="images/<?php echo $meal['image'] ?>" alt="<?php echo $meal['name'] ?>"></div>
                     <div class="meal-content">
                         <h4 class="profile-meal-title red"><?php echo $meal['name'] ?></h4>
                         <?php $rating = Meal::calculateMealRating($meal['id']) ?>
                         <div class="rating">
                             <?php for($i = 5; $i > 0; $i--): ?>   
                                 <?php if($rating > 0): ?>
-                                    <div><img class="profile-icon" src="icons/Icon-star.svg" alt="star-icon"></div>
+                                    <div><img class="review-icon" src="icons/Icon-star.svg" alt="star-icon"></div>
                                 <?php else: ?>
-                                    <div><img class="profile-icon" src="icons/Icon-star-grey.svg" alt="star-icon"></div>
+                                    <div><img class="review-icon" src="icons/Icon-star-grey.svg" alt="star-icon"></div>
                                 <?php endif; $rating--?>
                             <?php endfor; ?>
                         </div>
