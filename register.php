@@ -13,7 +13,7 @@
             
             session_start();
             $_SESSION['email'] = $user->getEmail();
-            header("Location: feed.php");
+            header("Location: itsMe.php");
         }
         catch(Throwable $error) {
             $error = $error->getMessage();

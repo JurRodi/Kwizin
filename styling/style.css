@@ -743,6 +743,8 @@ h2{
 
 #itsMe{
     margin-top: 40px;
+    width: 90px;
+    height: 90px;
 }
 
 .login-form{
@@ -1065,6 +1067,45 @@ h2{
     align-items: flex-end;
     margin-bottom: 30px;
     padding-right: 15px;
+}
+
+.itsMe{
+    height: 500px;
+    max-height: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.IM-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#IM2{
+    display: none;
+}
+
+#IM-img1{
+    width: 90px;
+    height: 90px;
+}
+
+#IM-img2{
+    display: none;
+    width: 90px;
+    height: 90px;
+}
+
+#IM-btn1{
+    cursor: pointer;
+    margin-top: 0;
+}
+
+#IM-btn2{
+    display: none;
+    cursor: pointer;
+    margin-top: 0;
 }
 
 @media (min-width: 768px) {
