@@ -61,9 +61,9 @@
         <div class="meal-container">
             <div id="details" class="meal-details-container">
                 <p><?php echo $meal['description'] ?></p>
-                <ul>
+                <ul class="ingredient-list">
                     <?php foreach($ingredients as $ingredient): ?>
-                        <li><?php echo $ingredient['amount'] . " " . $ingredient['name'] ?></li>
+                        <li class="ingredient-list-item"><?php echo $ingredient['amount'] . " " . $ingredient['name'] ?></li>
                     <?php endforeach; ?>
                 </ul>
                 <?php if(count($guests) !== $meal['max_guests'] ): ?>

@@ -395,9 +395,11 @@ h2{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    justify-content: space-between;
     margin-top: -50px;
     margin-right: 7%;
     overflow: visible;
+    height: 300px;
 }
 
 .meal-details{
@@ -590,22 +592,14 @@ h2{
     padding-left: 0;
     list-style-type: none;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     max-height: 46px;
     min-width: fit-content;
     overflow-x: visible;
-    /* overflow-y: hidden; */
 }
 
 .guestItem{
     margin-right: 10px;
-}
-
-.guestsList-meal{
-    /* position: absolute; */
-    /* top: 440px; */
-    /* right: 10%; */
 }
 
 .max-guests{
@@ -791,6 +785,14 @@ h2{
 
 .slideContainer{
     width: 100%;
+}
+
+.ingredient-list{
+    margin-top: 40px;
+}
+
+.ingredient-list-item{
+    margin-bottom: 10px;
 }
 
 .add-ingredients{
